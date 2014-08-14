@@ -1,4 +1,4 @@
-OHAttributedStringAdditions
-===========================
+# OHAttributedStringAdditions
 
-NSAttributedString Additions to add convenience methods to manipulate attributed strings
+This pod contains categories on `NSAttributedString` to add a lot of very useful convenience methods to manipulate attributed strings.
+
