@@ -28,6 +28,7 @@
 
 - (void)testExample
 {
+#warning Don't forget to write unit tests
     XCTFail(@"Unit tests not implemented yet.");
 }
 

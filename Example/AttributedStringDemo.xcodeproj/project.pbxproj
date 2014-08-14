@@ -57,6 +57,7 @@
 		091FEB29199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+OHAdditions.h"; sourceTree = "<group>"; };
 		091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+OHAdditions.m"; sourceTree = "<group>"; };
 		091FEB2C199C224E00505B79 /* OHAttributedStringAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHAttributedStringAdditions.h; sourceTree = "<group>"; };
+		0925DAC0199C5AE6001D9F8B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				091FEB18199C12B300505B79 /* OHAttributedStringAdditions.podspec */,
+				0925DAC0199C5AE6001D9F8B /* README.md */,
 				091FEB1B199C147700505B79 /* Source */,
 				091FEAE9199C11A600505B79 /* Demo */,
 				091FEB08199C11A600505B79 /* Unit Tests */,
