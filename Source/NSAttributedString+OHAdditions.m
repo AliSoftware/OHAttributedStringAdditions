@@ -89,6 +89,32 @@
     }
 }
 
++ (void)loadHTMLString:(NSString*)htmlString
+            completion:(void(^)(NSAttributedString* attrString))completion
+{
+    if (!completion) return;
+    
+    NSData* htmlData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
+    if (htmlData)
+    {
+        NSDictionary* options = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                  NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)};
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSAttributedString* attributedString = [[self alloc] initWithData:htmlData
+                                                  options:options
+                                                           documentAttributes:nil
+                                                                        error:NULL];
+            completion(attributedString);
+        });
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil);
+        });
+    }
+}
+
 /******************************************************************************/
 #pragma mark - Size
 

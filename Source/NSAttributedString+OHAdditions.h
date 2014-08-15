@@ -37,6 +37,8 @@
 + (instancetype)attributedStringWithAttributedString:(NSAttributedString*)attrStr;
 + (instancetype)attributedStringWithHTML:(NSString*)htmlString;
 
++ (void)loadHTMLString:(NSString*)htmlString
+            completion:(void(^)(NSAttributedString* attrString))completion;
 
 /******************************************************************************/
 #pragma mark - Size
