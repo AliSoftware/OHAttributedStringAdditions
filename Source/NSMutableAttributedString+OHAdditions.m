@@ -269,21 +269,16 @@
 {
     NSParameterAssert(block != nil);
     
-    NSRangePointer rangePtr = &range;
-    NSUInteger loc = range.location;
     [self beginEditing];
-    while (NSLocationInRange(loc, range))
+    [self enumerateAttribute:NSParagraphStyleAttributeName
+                     inRange:range
+                     options:0
+                  usingBlock:^(id style, NSRange range, BOOL *stop)
     {
-        NSParagraphStyle* currentStyle = [self attribute:NSParagraphStyleAttributeName
-                                                 atIndex:loc
-                                   longestEffectiveRange:rangePtr
-                                                 inRange:range];
-        NSMutableParagraphStyle* newStyle = [currentStyle mutableCopy];
+        NSMutableParagraphStyle* newStyle = [style mutableCopy];
         block(newStyle);
-        [self setParagraphStyle:newStyle range:*rangePtr];
-        
-        loc = NSMaxRange(*rangePtr);
-    }
+        [self setParagraphStyle:newStyle range:range];
+    }];
     [self endEditing];
 }
 
