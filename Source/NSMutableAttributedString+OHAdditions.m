@@ -1,6 +1,6 @@
-/***********************************************************************************
+/*******************************************************************************
  * This software is under the MIT License quoted below:
- ***********************************************************************************
+ *******************************************************************************
  *
  * Copyright (c) 2010 Olivier Halligon
  *
@@ -22,14 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- ***********************************************************************************/
+ ******************************************************************************/
 
 
 #import "NSMutableAttributedString+OHAdditions.h"
 
 @implementation NSMutableAttributedString (OHAdditions)
 
-// MARK: Text Font
+/******************************************************************************/
+#pragma mark - Text Font
 
 - (void)setFont:(UIFont*)font
 {
@@ -73,7 +74,8 @@
 	[self addAttribute:NSFontAttributeName value:(id)aFont range:range];
 }
 
-// MARK: Text Color
+/******************************************************************************/
+#pragma mark - Text Color
 
 - (void)setTextColor:(UIColor*)color
 {
@@ -97,7 +99,8 @@
 	[self addAttribute:NSBackgroundColorAttributeName value:(id)color range:range];
 }
 
-// MARK: Text Style
+/******************************************************************************/
+#pragma mark - Text Style
 
 - (void)setTextUnderlined:(BOOL)underlined
 {
@@ -163,17 +166,22 @@
     [self endEditing];
 }
 
-- (void)setTextBold:(BOOL)isBold range:(NSRange)range
+// TODO: Check out the effect of the NSStrokeWidthAttributeName attribute
+//       to see if we can also fake bold fonts by increasing the font weight
+- (void)setFontBold:(BOOL)isBold range:(NSRange)range
 {
 	[self changeFontWithTraits:(isBold?UIFontDescriptorTraitBold:0) range:range];
 }
 
-- (void)setTextItalics:(BOOL)isItalics range:(NSRange)range
+// TODO: Check out the effect of the NSObliquenessAttributeName attribute
+//       to see if we can also fake italics fonts by increasing the font skew
+- (void)setFontItalics:(BOOL)isItalics range:(NSRange)range
 {
     [self changeFontWithTraits:(isItalics?UIFontDescriptorTraitItalic:0) range:range];
 }
 
-// MARK: Link
+/******************************************************************************/
+#pragma mark - Link
 
 - (void)setURL:(NSURL*)linkURL range:(NSRange)range
 {
@@ -184,7 +192,8 @@
     }
 }
 
-// MARK: Character Spacing
+/******************************************************************************/
+#pragma mark - Character Spacing
 
 - (void)setCharacterSpacing:(CGFloat)chracterSpacing
 {
@@ -195,7 +204,8 @@
     [self addAttribute:NSKernAttributeName value:@(characterSpacing) range:range];
 }
 
-// MARK: Subscript and Superscript
+/******************************************************************************/
+#pragma mark - Subscript and Superscript
 
 - (void)setBaselineOffset:(CGFloat)offset
 {
@@ -222,7 +232,8 @@
     [self setBaselineOffset:offset range:range];
 }
 
-// MARK: Paragraph Style
+/******************************************************************************/
+#pragma mark - Paragraph Style
 
 - (void)setTextAlignment:(NSTextAlignment)alignment
 {
@@ -281,6 +292,8 @@
     [self setParagraphStyle:style range:NSMakeRange(0,self.length)];
 }
 
+// TODO: Check the behavior when applying a paragraph style only to some
+//       characters in the middle of an actual paragraph.
 - (void)setParagraphStyle:(NSParagraphStyle*)style range:(NSRange)range
 {
     [self removeAttribute:NSParagraphStyleAttributeName range:range]; // Work around for Apple leak

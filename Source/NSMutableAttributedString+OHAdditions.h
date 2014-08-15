@@ -1,6 +1,6 @@
-/***********************************************************************************
+/*******************************************************************************
  * This software is under the MIT License quoted below:
- ***********************************************************************************
+ *******************************************************************************
  *
  * Copyright (c) 2010 Olivier Halligon
  *
@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- ***********************************************************************************/
+ ******************************************************************************/
 
 
 #import <Foundation/Foundation.h>
@@ -30,7 +30,8 @@
 
 @interface NSMutableAttributedString (OHAdditions)
 
-// MARK: Text Font
+/******************************************************************************/
+#pragma mark - Text Font
 
 - (void)setFont:(UIFont*)font;
 - (void)setFont:(UIFont*)font range:(NSRange)range;
@@ -38,40 +39,48 @@
 - (void)setFontName:(NSString*)fontName size:(CGFloat)size range:(NSRange)range;
 - (void)setFontFamily:(NSString*)fontFamily size:(CGFloat)size bold:(BOOL)isBold italic:(BOOL)isItalic range:(NSRange)range;
 
-// MARK: Text Color
+/******************************************************************************/
+#pragma mark - Text Color
 
 - (void)setTextColor:(UIColor*)color;
 - (void)setTextColor:(UIColor*)color range:(NSRange)range;
 - (void)setTextBackgroundColor:(UIColor*)color;
 - (void)setTextBackgroundColor:(UIColor*)color range:(NSRange)range;
 
-// MARK: Text Style
+/******************************************************************************/
+#pragma mark - Text Style
 
 - (void)setTextUnderlined:(BOOL)underlined;
 - (void)setTextUnderlined:(BOOL)underlined range:(NSRange)range;
 - (void)setTextUnderlineStyle:(NSUnderlineStyle)style range:(NSRange)range;
 - (void)setTextUnderlineColor:(UIColor*)color range:(NSRange)range;
 
-- (void)setTextBold:(BOOL)isBold range:(NSRange)range;
-- (void)setTextItalics:(BOOL)isItalics range:(NSRange)range;
+- (void)setFontBold:(BOOL)isBold range:(NSRange)range;
+- (void)setFontItalics:(BOOL)isItalics range:(NSRange)range;
 
-// MARK: Link
+/******************************************************************************/
+#pragma mark - Link
 
+// TODO: Check if setting an URL also changes the text color and underline
+//       attributes. I don't believe it does, but either way, document it.
 - (void)setURL:(NSURL*)linkURL range:(NSRange)range;
 
-// MARK: Character Spacing
+/******************************************************************************/
+#pragma mark - Character Spacing
 
 - (void)setCharacterSpacing:(CGFloat)characterSpacing;
 - (void)setCharacterSpacing:(CGFloat)characterSpacing range:(NSRange)range;
 
-// MARK: Subscript and Superscript
+/******************************************************************************/
+#pragma mark - Subscript and Superscript
 
 - (void)setBaselineOffset:(CGFloat)offset;
 - (void)setBaselineOffset:(CGFloat)offset range:(NSRange)range;
 - (void)setSuperscriptForRange:(NSRange)range;
 - (void)setSubscriptForRange:(NSRange)range;
 
-// MARK: Paragraph Style
+/******************************************************************************/
+#pragma mark - Paragraph Style
 
 - (void)setTextAlignment:(NSTextAlignment)alignment;
 - (void)setTextAlignment:(NSTextAlignment)alignment range:(NSRange)range;

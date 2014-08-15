@@ -1,6 +1,6 @@
-/***********************************************************************************
+/*******************************************************************************
  * This software is under the MIT License quoted below:
- ***********************************************************************************
+ *******************************************************************************
  *
  * Copyright (c) 2010 Olivier Halligon
  *
@@ -22,19 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- ***********************************************************************************/
+ ******************************************************************************/
 
 
 #import "NSAttributedString+OHAdditions.h"
 
 @implementation NSAttributedString (OHAdditions)
 
-- (NSRange)fullRange
-{
-    return NSMakeRange(0, self.length);
-}
-
-// MARK: Convenience Constructors
+/******************************************************************************/
+#pragma mark - Convenience Constructors
 
 + (instancetype)attributedStringWithString:(NSString*)string
 {
@@ -44,7 +40,7 @@
     }
     else
     {
-        return nil;
+        return [self new];
     }
 }
 
@@ -56,7 +52,7 @@
     }
     else
     {
-        return nil;
+        return [self new];
     }
 }
 
@@ -93,22 +89,22 @@
     }
 }
 
-// MARK: Size
+/******************************************************************************/
+#pragma mark - Size
 
 - (CGSize)sizeConstrainedToSize:(CGSize)maxSize
 {
-	return [self sizeConstrainedToSize:maxSize fitRange:NULL];
-}
-
-- (CGSize)sizeConstrainedToSize:(CGSize)maxSize fitRange:(NSRange*)fitRange
-{
     // Use NSStringDrawingUsesLineFragmentOrigin to compute bounds of multi-line strings (see Apple doc)
-    CGRect bounds = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    CGRect bounds = [self boundingRectWithSize:maxSize
+                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                       context:nil];
+
     // We need to ceil the returned values (see Apple doc)
     return CGSizeMake( ceilf(bounds.size.width), ceilf(bounds.size.height) );
 }
 
-// MARK: Text Font
+/******************************************************************************/
+#pragma mark - Text Font
 
 - (UIFont*)fontAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
@@ -120,7 +116,8 @@
     [self enumerateAttribute:NSFontAttributeName inRange:enumerationRange options:0 usingBlock:block];
 }
 
-// MARK: Text Color
+/******************************************************************************/
+#pragma mark - Text Color
 
 - (UIColor*)textColorAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
@@ -132,18 +129,19 @@
     return [self attribute:NSBackgroundColorAttributeName atIndex:index effectiveRange:aRange];
 }
 
-// MARK: Text Style
+/******************************************************************************/
+#pragma mark - Text Style
 
-- (BOOL)textUnderlinedAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
+- (BOOL)isTextUnderlinedAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     NSUnderlineStyle underlineStyle = [self textUnderlineStyleAtIndex:index effectiveRange:aRange];
-    return (underlineStyle & ~UIFontDescriptorClassMask) != NSUnderlineStyleNone;
+    return underlineStyle != NSUnderlineStyleNone;
 }
 
 - (NSUnderlineStyle)textUnderlineStyleAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
-    id attr = [self attribute:NSUnderlineStyleAttributeName atIndex:index effectiveRange:aRange];
-    return [(NSNumber*)attr integerValue];
+    NSNumber* attr = [self attribute:NSUnderlineStyleAttributeName atIndex:index effectiveRange:aRange];
+    return [attr integerValue];
 }
 
 - (UIColor*)textUnderlineColorAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
@@ -151,7 +149,7 @@
     return [self attribute:NSUnderlineColorAttributeName atIndex:index effectiveRange:aRange];
 }
 
-- (BOOL)textBoldAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
+- (BOOL)isFontBoldAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     UIFont* font = [self fontAtIndex:index effectiveRange:aRange];
     NSDictionary* traits = [font.fontDescriptor objectForKey:UIFontDescriptorTraitsAttribute];
@@ -159,7 +157,7 @@
     return (symTraits & UIFontDescriptorTraitBold) != 0;
 }
 
-- (BOOL)textItalicsAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
+- (BOOL)isFontItalicsAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     UIFont* font = [self fontAtIndex:index effectiveRange:aRange];
     NSDictionary* traits = [font.fontDescriptor objectForKey:UIFontDescriptorTraitsAttribute];
@@ -167,7 +165,8 @@
     return (symTraits & UIFontDescriptorTraitItalic) != 0;
 }
 
-// MARK: Links
+/******************************************************************************/
+#pragma mark - Links
 
 - (NSURL*)URLAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
@@ -179,32 +178,34 @@
     [self enumerateAttribute:NSLinkAttributeName inRange:enumerationRange options:0 usingBlock:block];
 }
 
-
-// MARK: Character Spacing
+/******************************************************************************/
+#pragma mark - Character Spacing
 
 - (CGFloat)characterSpacingAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     return [[self attribute:NSKernAttributeName atIndex:index effectiveRange:aRange] floatValue];
 }
 
-// MARK: Subscript and Superscript
+/******************************************************************************/
+#pragma mark - Subscript and Superscript
 
 - (CGFloat)baselineOffsetAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     return [[self attribute:NSBaselineOffsetAttributeName atIndex:index effectiveRange:aRange] floatValue];
 }
 
-// MARK: Paragraph Style
+/******************************************************************************/
+#pragma mark - Paragraph Style
 
 - (NSTextAlignment)textAlignmentAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
-    NSParagraphStyle* style = [self attribute:NSParagraphStyleAttributeName atIndex:index effectiveRange:aRange];
+    NSParagraphStyle* style = [self paragraphStyleAtIndex:index effectiveRange:aRange];
     return style.alignment;
 }
 
 - (NSLineBreakMode)lineBreakModeAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
-    NSParagraphStyle* style = [self attribute:NSParagraphStyleAttributeName atIndex:index effectiveRange:aRange];
+    NSParagraphStyle* style = [self paragraphStyleAtIndex:index effectiveRange:aRange];
     return style.lineBreakMode;
 }
 

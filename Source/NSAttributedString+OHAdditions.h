@@ -1,6 +1,6 @@
-/***********************************************************************************
+/*******************************************************************************
  * This software is under the MIT License quoted below:
- ***********************************************************************************
+ *******************************************************************************
  *
  * Copyright (c) 2010 Olivier Halligon
  *
@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- ***********************************************************************************/
+ ******************************************************************************/
 
 
 #import <Foundation/Foundation.h>
@@ -30,48 +30,68 @@
 
 @interface NSAttributedString (OHAdditions)
 
-- (NSRange)fullRange;
-
-// MARK: Convenience Constructors
+/******************************************************************************/
+#pragma mark - Convenience Constructors
 
 + (instancetype)attributedStringWithString:(NSString*)string;
 + (instancetype)attributedStringWithAttributedString:(NSAttributedString*)attrStr;
 + (instancetype)attributedStringWithHTML:(NSString*)htmlString;
 
-// MARK: Size
+
+/******************************************************************************/
+#pragma mark - Size
 
 - (CGSize)sizeConstrainedToSize:(CGSize)maxSize;
-- (CGSize)sizeConstrainedToSize:(CGSize)maxSize fitRange:(NSRange*)fitRange;
 
-// MARK: Text Font
+/******************************************************************************/
+#pragma mark - Text Font
 
-- (UIFont*)fontAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
-- (void)enumerateFontsInRange:(NSRange)enumerationRange usingBlock:(void (^)(UIFont* font, NSRange range, BOOL *stop))block;
+- (UIFont*)fontAtIndex:(NSUInteger)index
+        effectiveRange:(NSRangePointer)aRange;
 
-// MARK: Text Color
+- (void)enumerateFontsInRange:(NSRange)enumerationRange
+                   usingBlock:(void (^)(UIFont* font, NSRange range, BOOL *stop))block;
 
-- (UIColor*)textColorAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
-- (UIColor*)textBackgroundColorAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
+/******************************************************************************/
+#pragma mark - Text Color
 
-// MARK: Text Style
+- (UIColor*)textColorAtIndex:(NSUInteger)index
+              effectiveRange:(NSRangePointer)aRange;
 
-- (BOOL)textUnderlinedAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
-- (NSUnderlineStyle)textUnderlineStyleAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
-- (UIColor*)textUnderlineColorAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
+- (UIColor*)textBackgroundColorAtIndex:(NSUInteger)index
+                        effectiveRange:(NSRangePointer)aRange;
 
-- (BOOL)textBoldAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
-- (BOOL)textItalicsAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
+/******************************************************************************/
+#pragma mark - Text Style
 
-// MARK: Link
+- (BOOL)isTextUnderlinedAtIndex:(NSUInteger)index
+                 effectiveRange:(NSRangePointer)aRange;
 
+- (NSUnderlineStyle)textUnderlineStyleAtIndex:(NSUInteger)index
+                               effectiveRange:(NSRangePointer)aRange;
+- (UIColor*)textUnderlineColorAtIndex:(NSUInteger)index
+                       effectiveRange:(NSRangePointer)aRange;
+- (BOOL)isFontBoldAtIndex:(NSUInteger)index
+           effectiveRange:(NSRangePointer)aRange;
+- (BOOL)isFontItalicsAtIndex:(NSUInteger)index
+              effectiveRange:(NSRangePointer)aRange;
+
+/******************************************************************************/
+#pragma mark - Link
 - (NSURL*)URLAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
 - (void)enumerateURLsInRange:(NSRange)enumerationRange usingBlock:(void (^)(NSURL* link, NSRange range, BOOL *stop))block;
 
-// MARK: Character Spacing
+/******************************************************************************/
+#pragma mark - Character Spacing
 
 - (CGFloat)characterSpacingAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
 
-// MARK: Paragraph Style
+/******************************************************************************/
+#pragma mark - Subscript and Superscript
+- (CGFloat)baselineOffsetAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
+
+/******************************************************************************/
+#pragma mark - Paragraph Style
 
 - (NSTextAlignment)textAlignmentAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
 - (NSLineBreakMode)lineBreakModeAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
