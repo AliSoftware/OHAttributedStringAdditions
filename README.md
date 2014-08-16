@@ -1,6 +1,8 @@
 # OHAttributedStringAdditions
 
-> _TODO: Add CocoaPods and Travis badges_
+[![Version](http://cocoapod-badges.herokuapp.com/v/OHAttributedStringAdditions/badge.png)](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/OHAttributedStringAdditions/badge.png)](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
+[![Build Status](https://travis-ci.org/AliSoftware/OHAttributedStringAdditions.png?branch=master)](https://travis-ci.org/AliSoftware/OHAttributedStringAdditions)
 
 This pod contains categories on `NSAttributedString` to add a lot of very useful convenience methods to manipulate attributed strings.
 
@@ -26,8 +28,7 @@ Then do a `pod install`.
 
 ## Documentation
 
-_TODO_
-> The source code is fully commented and documentation is auto-generated [here](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
+The source code is fully commented and documentation is auto-generated [here](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
 
 ## Licence
 
