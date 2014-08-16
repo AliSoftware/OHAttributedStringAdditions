@@ -28,24 +28,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "091FEB00199C11A600505B79"
-               BuildableName = "AttributedStringDemoTests.xctest"
-               BlueprintName = "AttributedStringDemoTests"
-               ReferencedContainer = "container:AttributedStringDemo.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1BD8E921522477E8EEC255A"
                BuildableName = "libPods-AttributedStringDemoTests.a"
                BlueprintName = "Pods-AttributedStringDemoTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "091FEB00199C11A600505B79"
+               BuildableName = "AttributedStringDemoTests.xctest"
+               BlueprintName = "AttributedStringDemoTests"
+               ReferencedContainer = "container:AttributedStringDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -30,6 +30,12 @@ Then do a `pod install`.
 
 The source code is fully commented and documentation is auto-generated [here](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
 
+## Example
+
+A demo project is provided in the repository. Don't hesitate to open `Example/AttributedStringDemo.xcworkspace` and play with it.
+
+![Demo Capture](README.png)
+
 ## Licence
 
 This component is under the MIT Licence

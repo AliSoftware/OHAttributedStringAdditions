@@ -1,6 +1,7 @@
 language: objective-c
 xcode_workspace: Example/AttributedStringDemo.xcworkspace
 xcode_scheme: AttributedStringDemo
+xcode_sdk: iphonesimulator7.1
 
 # script:
 #    - xctool -workspace Example/AttributedStringDemo.xcworkspace -scheme "AttributedStringDemo" -configuration Release -sdk iphonesimulator test

@@ -41,11 +41,14 @@
         NSString* html = @""
         "Hello <b>you</b>!<br>"
         "<br>"
-        "<p>This is <a href='https://github.com/AliSoftware/OHAttributedStringAdditions'>OHAttributedStringAdditions</a>, a cool <i>category</i> that "
-        "lets you <font color='red'>manipulate</font> <tt>NSAttributedString</tt> with nicer methods<sup>(1)</sup>.</p>"
-        "<p>For example you can change the <font face='Zapfino'>font</font>, make text <b>bold</b>, <i>italics</i> or <u>underlined</u>, …</p>"
+        "<p>This is <a href='https://github.com/AliSoftware/OHAttributedStringAdditions'>OHAttributedStringAdditions</a>,"
+            " a cool <i>category</i> that lets you <font color='red'>manipulate</font> <tt>NSAttributedString</tt>"
+            " with nicer methods<sup>(1)</sup>.</p>"
+        "<p>For example you can change the <font face='Zapfino'>font</font>, make text"
+            " <b>bold</b>, <i>italics</i> or <u>underlined</u>, …</p>"
         "<p style='text-align:center'>Amazing, isn't it?</p>"
-        "<p style='text-indent:30px;'>You can even <font color='#da0'>indent</font> the first line of your paragraphs to make nice text layouts, justify paragraphs, and a lot more!</p>"
+        "<p style='text-indent:30px;'>You can even <font color='#da0'>indent</font> the first line of your"
+            " paragraphs to make nice text layouts, justify paragraphs, and a lot more!</p>"
         "<p><sup>(1)</sup>" LIST_TITLE ":<ul>"
         "<li>Fonts : <tt>setFont:range:</tt></li>"
         "<li>Colors : <tt>setTextColor:range:</tt></li>"
@@ -54,9 +57,12 @@
         "<li>Paragraph style (indentation, text alignment, …)</li>"
         "<li>And much more</li>"
         "</ul></p>"
-        "<p style='text-indent:30px'><font color='gray'>Note: Part of this attributed string is created by using <font color='#00c'>basic HTML code</font>, "
-        "and some other attribues are <font color='#00c'>set by code</font> to demonstrate the usage of <tt>OHAttributedStringAdditions</tt> methods.</font></p>"
-        "<i><center>Don't hesitate to try the search field at the top of the screen. Searched text will be highlighted dynamically!</center></i>";
+        "<p style='text-indent:30px'><font color='gray'>Note: Part of this attributed string is created"
+            " by using <font color='#00c'>basic HTML code</font>, and some other attribues"
+            " are <font color='#00c'>set by code</font> to demonstrate the usage of"
+            " <tt>OHAttributedStringAdditions</tt> methods.</font></p>"
+        "<i><center>Don't hesitate to try the search field at the top of the screen."
+            " Searched text will be highlighted dynamically!</center></i>";
         
         NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithHTML:html];
         
@@ -71,7 +77,8 @@
         [str setTextColor:[UIColor colorWithRed:0 green:0.5 blue:0 alpha:1.] range:listTitleRange];
         [str setTextUnderlineStyle:NSUnderlineStyleThick|NSUnderlinePatternDot range:listTitleRange];
         
-        [str enumerateParagraphStylesInRange:NSMakeRange(0,str.length) usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop) {
+        [str enumerateParagraphStylesInRange:NSMakeRange(0,str.length) usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop)
+        {
             // For example, justify only paragraphs that have a indentation
             if (style.firstLineHeadIndent > 0)
             {
