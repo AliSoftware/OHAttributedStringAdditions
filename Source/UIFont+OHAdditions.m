@@ -33,4 +33,16 @@
     return [UIFont fontWithDescriptor:desc size:size];
 }
 
+- (instancetype)fontWithSymbolicTraits:(UIFontDescriptorSymbolicTraits)symTraits
+{
+	NSDictionary* attributes = @{ UIFontDescriptorTraitsAttribute: @{UIFontSymbolicTrait:@(symTraits)}};
+    UIFontDescriptor* desc = [self.fontDescriptor fontDescriptorByAddingAttributes:attributes];
+    return [UIFont fontWithDescriptor:desc size:self.pointSize];
+}
+
+- (UIFontDescriptorSymbolicTraits)symbolicTraits
+{
+    return self.fontDescriptor.symbolicTraits;
+}
+
 @end

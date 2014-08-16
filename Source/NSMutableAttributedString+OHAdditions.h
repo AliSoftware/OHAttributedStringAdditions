@@ -58,8 +58,6 @@
 /******************************************************************************/
 #pragma mark - Link
 
-// TODO: Check if setting an URL also changes the text color and underline
-//       attributes. I don't believe it does, but either way, document it.
 - (void)setURL:(NSURL*)linkURL range:(NSRange)range;
 
 /******************************************************************************/

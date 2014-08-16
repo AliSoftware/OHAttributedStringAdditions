@@ -26,6 +26,8 @@
 
 
 #import "NSMutableAttributedString+OHAdditions.h"
+#import "NSAttributedString+OHAdditions.h"
+#import "UIFont+OHAdditions.h"
 
 @implementation NSMutableAttributedString (OHAdditions)
 
@@ -98,64 +100,43 @@
 	[self addAttribute:NSUnderlineColorAttributeName value:color range:range];
 }
 
-
-- (void)changeFontWithTraits:(UIFontDescriptorSymbolicTraits)newTraits range:(NSRange)range
-{
-    NSUInteger startPoint = range.location;
-	NSRange effectiveRange;
-    [self beginEditing];
-	do
-    {
-		// Get font at startPoint
-		UIFont* currentFont = [self attribute:NSFontAttributeName atIndex:startPoint effectiveRange:&effectiveRange];
-        if (!currentFont)
-        {
-            currentFont = [UIFont systemFontOfSize:12];
-        }
-		// The range for which this font is effective
-		NSRange fontRange = NSIntersectionRange(range, effectiveRange);
-        
-		// Create the font variant for this font according to new traits
-        UIFontDescriptor* fontDesc = [currentFont fontDescriptor];
-        fontDesc = [fontDesc fontDescriptorWithSymbolicTraits:newTraits];
-		UIFont* newFont = [UIFont fontWithDescriptor:fontDesc size:currentFont.pointSize];
-        
-        if (!newFont)
-        {
-            NSLog(@"[NSMutableAttributedString+OHAdditions] Warning: can't find an italic font variant for font family %@. "
-                  @"Try another font family (like Helvetica) instead.", currentFont.familyName);
-        }
-        
-        // Apply the new font with new traits
-		if (newFont)
-        {
-			[self removeAttribute:NSFontAttributeName range:fontRange]; // Work around for Apple leak
-			[self addAttribute:NSFontAttributeName value:(id)newFont range:fontRange];
-		}
-		
-		// If the fontRange was not covering the whole range, continue with next run
-		startPoint = NSMaxRange(effectiveRange);
-	} while(startPoint<NSMaxRange(range));
-    [self endEditing];
-}
-
 // TODO: Check out the effect of the NSStrokeWidthAttributeName attribute
 //       to see if we can also fake bold fonts by increasing the font weight
 - (void)setFontBold:(BOOL)isBold range:(NSRange)range
 {
-	[self changeFontWithTraits:(isBold?UIFontDescriptorTraitBold:0) range:range];
+    [self beginEditing];
+    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange range, BOOL *stop)
+     {
+         UIFontDescriptorSymbolicTraits traits = font.symbolicTraits;
+         traits &= ~UIFontDescriptorTraitBold;
+         if (isBold) traits |= UIFontDescriptorTraitBold;
+         UIFont* newFont = [font fontWithSymbolicTraits:traits];
+         [self setFont:newFont range:range];
+     }];
+    [self endEditing];
 }
 
 // TODO: Check out the effect of the NSObliquenessAttributeName attribute
 //       to see if we can also fake italics fonts by increasing the font skew
 - (void)setFontItalics:(BOOL)isItalics range:(NSRange)range
 {
-    [self changeFontWithTraits:(isItalics?UIFontDescriptorTraitItalic:0) range:range];
+    [self beginEditing];
+    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange range, BOOL *stop)
+    {
+        UIFontDescriptorSymbolicTraits traits = font.symbolicTraits;
+        traits &= ~UIFontDescriptorTraitItalic;
+        if (isItalics) traits |= UIFontDescriptorTraitItalic;
+        UIFont* newFont = [font fontWithSymbolicTraits:traits];
+        [self setFont:newFont range:range];
+    }];
+    [self endEditing];
 }
 
 /******************************************************************************/
 #pragma mark - Link
 
+// TODO: Check if setting an URL also changes the text color and underline
+//       attributes. I don't believe it does, but either way, document it.
 - (void)setURL:(NSURL*)linkURL range:(NSRange)range
 {
     [self removeAttribute:NSLinkAttributeName range:range]; // Work around for Apple leak

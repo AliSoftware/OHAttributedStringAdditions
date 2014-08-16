@@ -19,4 +19,7 @@
                           size:(CGFloat)size
                         traits:(UIFontDescriptorSymbolicTraits)symTraits;
 
+- (instancetype)fontWithSymbolicTraits:(UIFontDescriptorSymbolicTraits)symTraits;
+- (UIFontDescriptorSymbolicTraits)symbolicTraits;
+
 @end
