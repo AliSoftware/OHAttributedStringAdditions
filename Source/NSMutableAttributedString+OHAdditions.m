@@ -34,7 +34,7 @@
 
 - (void)setFont:(UIFont*)font
 {
-	[self setFontName:font.fontName size:font.pointSize];
+	[self setFont:font range:NSMakeRange(0, self.length)];
 }
 
 - (void)setFont:(UIFont*)font range:(NSRange)range
@@ -46,33 +46,6 @@
     }
 }
 
-- (void)setFontName:(NSString*)fontName size:(CGFloat)size
-{
-	[self setFontName:fontName size:size range:NSMakeRange(0,self.length)];
-}
-
-- (void)setFontName:(NSString*)fontName size:(CGFloat)size range:(NSRange)range
-{
-    UIFont* aFont = [UIFont fontWithName:fontName size:size];
-    [self setFont:aFont range:range];
-}
-
-- (void)setFontFamily:(NSString*)fontFamily
-                 size:(CGFloat)size
-                 bold:(BOOL)isBold
-               italic:(BOOL)isItalic
-                range:(NSRange)range
-{
-	UIFontDescriptorSymbolicTraits traits = (isBold?UIFontDescriptorTraitBold:0) | (isItalic?UIFontDescriptorTraitItalic:0);
-	NSDictionary* attributes = @{ UIFontDescriptorFamilyAttribute: fontFamily,
-                                  UIFontDescriptorTraitsAttribute: @{UIFontSymbolicTrait:@(traits)}};
-	
-    UIFontDescriptor* desc = [UIFontDescriptor fontDescriptorWithFontAttributes:attributes];
-    UIFont* aFont = [UIFont fontWithDescriptor:desc size:size];
-    
-	[self removeAttribute:NSFontAttributeName range:range]; // Work around for Apple leak
-	[self addAttribute:NSFontAttributeName value:(id)aFont range:range];
-}
 
 /******************************************************************************/
 #pragma mark - Text Color

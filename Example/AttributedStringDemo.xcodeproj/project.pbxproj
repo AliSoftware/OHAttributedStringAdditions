@@ -21,6 +21,7 @@
 		091FEB1A199C135100505B79 /* ASDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 091FEB19199C135100505B79 /* ASDViewController.xib */; };
 		091FEB25199C149F00505B79 /* NSAttributedString+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB1D199C149F00505B79 /* NSAttributedString+OHAdditions.m */; };
 		091FEB2B199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */; };
+		094443F2199F87B300324F4A /* UIFont+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F1199F87B300324F4A /* UIFont+OHAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+OHAdditions.m"; sourceTree = "<group>"; };
 		091FEB2C199C224E00505B79 /* OHAttributedStringAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHAttributedStringAdditions.h; sourceTree = "<group>"; };
 		0925DAC0199C5AE6001D9F8B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		094443F0199F87B300324F4A /* UIFont+OHAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+OHAdditions.h"; sourceTree = "<group>"; };
+		094443F1199F87B300324F4A /* UIFont+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OHAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 				091FEB1D199C149F00505B79 /* NSAttributedString+OHAdditions.m */,
 				091FEB29199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.h */,
 				091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */,
+				094443F0199F87B300324F4A /* UIFont+OHAdditions.h */,
+				094443F1199F87B300324F4A /* UIFont+OHAdditions.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -272,6 +277,7 @@
 				091FEB2B199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m in Sources */,
 				091FEB25199C149F00505B79 /* NSAttributedString+OHAdditions.m in Sources */,
 				091FEAFA199C11A600505B79 /* ASDViewController.m in Sources */,
+				094443F2199F87B300324F4A /* UIFont+OHAdditions.m in Sources */,
 				091FEAF0199C11A600505B79 /* main.m in Sources */,
 				091FEAF4199C11A600505B79 /* ASDAppDelegate.m in Sources */,
 			);

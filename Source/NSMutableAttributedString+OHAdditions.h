@@ -35,13 +35,6 @@
 
 - (void)setFont:(UIFont*)font;
 - (void)setFont:(UIFont*)font range:(NSRange)range;
-- (void)setFontName:(NSString*)fontName size:(CGFloat)size;
-- (void)setFontName:(NSString*)fontName size:(CGFloat)size range:(NSRange)range;
-- (void)setFontFamily:(NSString*)fontFamily
-                 size:(CGFloat)size
-                 bold:(BOOL)isBold
-               italic:(BOOL)isItalic
-                range:(NSRange)range;
 
 /******************************************************************************/
 #pragma mark - Text Color

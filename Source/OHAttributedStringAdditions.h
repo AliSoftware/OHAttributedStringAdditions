@@ -26,3 +26,4 @@
 
 #import "NSAttributedString+OHAdditions.h"
 #import "NSMutableAttributedString+OHAdditions.h"
+#import "UIFont+OHAdditions.h"
