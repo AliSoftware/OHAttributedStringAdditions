@@ -156,7 +156,7 @@
 }
 
 /******************************************************************************/
-#pragma mark - Text Style
+#pragma mark - Text Underlining
 
 - (BOOL)isTextUnderlinedAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
@@ -175,19 +175,20 @@
     return [self attribute:NSUnderlineColorAttributeName atIndex:index effectiveRange:aRange];
 }
 
+/******************************************************************************/
+#pragma mark - Text Style & Traits
+
 - (BOOL)isFontBoldAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     UIFont* font = [self fontAtIndex:index effectiveRange:aRange];
-    NSDictionary* traits = [font.fontDescriptor objectForKey:UIFontDescriptorTraitsAttribute];
-    UIFontDescriptorSymbolicTraits symTraits = (uint32_t)[traits[UIFontSymbolicTrait] longValue];
+    UIFontDescriptorSymbolicTraits symTraits = font.fontDescriptor.symbolicTraits;
     return (symTraits & UIFontDescriptorTraitBold) != 0;
 }
 
 - (BOOL)isFontItalicsAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     UIFont* font = [self fontAtIndex:index effectiveRange:aRange];
-    NSDictionary* traits = [font.fontDescriptor objectForKey:UIFontDescriptorTraitsAttribute];
-    UIFontDescriptorSymbolicTraits symTraits = (uint32_t)[traits[UIFontSymbolicTrait] longValue];
+    UIFontDescriptorSymbolicTraits symTraits = font.fontDescriptor.symbolicTraits;
     return (symTraits & UIFontDescriptorTraitItalic) != 0;
 }
 

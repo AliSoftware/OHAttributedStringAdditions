@@ -45,14 +45,22 @@
 - (void)setTextBackgroundColor:(UIColor*)color range:(NSRange)range;
 
 /******************************************************************************/
-#pragma mark - Text Style
+#pragma mark - Text Underlining
 
 - (void)setTextUnderlined:(BOOL)underlined;
 - (void)setTextUnderlined:(BOOL)underlined range:(NSRange)range;
 - (void)setTextUnderlineStyle:(NSUnderlineStyle)style range:(NSRange)range;
+- (void)setTextUnderlineColor:(UIColor*)color;
 - (void)setTextUnderlineColor:(UIColor*)color range:(NSRange)range;
 
+/******************************************************************************/
+#pragma mark - Text Style & Traits
+- (void)changeFontTraitsWithBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block;
+- (void)changeFontTraitsInRange:(NSRange)range
+                      withBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block;
+- (void)setFontBold:(BOOL)isBold;
 - (void)setFontBold:(BOOL)isBold range:(NSRange)range;
+- (void)setFontItalics:(BOOL)isItalics;
 - (void)setFontItalics:(BOOL)isItalics range:(NSRange)range;
 
 /******************************************************************************/
@@ -82,11 +90,9 @@
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode;
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode range:(NSRange)range;
 
-/* Allows you to modify only certain Paragraph Styles without changing the others (for example changing the firstLineHeadIndent without overriding the textAlignment) */
-- (void)modifyParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block;
-- (void)modifyParagraphStylesInRange:(NSRange)range withBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block;
-/* Override the Paragraph Styles, dropping the ones previously set if any.
- Be aware that this will override the text alignment, linebreakmode, and all other paragraph styles with the new values */
+- (void)changeParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block;
+- (void)changeParagraphStylesInRange:(NSRange)range
+                           withBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block;
 - (void)setParagraphStyle:(NSParagraphStyle *)style;
 - (void)setParagraphStyle:(NSParagraphStyle*)style range:(NSRange)range;
 

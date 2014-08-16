@@ -75,7 +75,7 @@
 }
 
 /******************************************************************************/
-#pragma mark - Text Style
+#pragma mark - Text Underlining
 
 - (void)setTextUnderlined:(BOOL)underlined
 {
@@ -94,42 +94,73 @@
 	[self addAttribute:NSUnderlineStyleAttributeName value:@(style) range:range];
 }
 
+- (void)setTextUnderlineColor:(UIColor*)color
+{
+    [self setTextUnderlineColor:color range:NSMakeRange(0, self.length)];
+}
+
 - (void)setTextUnderlineColor:(UIColor*)color range:(NSRange)range
 {
 	[self removeAttribute:NSUnderlineColorAttributeName range:range]; // Work around for Apple leak
 	[self addAttribute:NSUnderlineColorAttributeName value:color range:range];
 }
 
+/******************************************************************************/
+#pragma mark - Text Style & Traits
+
+- (void)changeFontTraitsWithBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block
+{
+    [self changeFontTraitsInRange:NSMakeRange(0, self.length)
+                        withBlock:block];
+}
+
+- (void)changeFontTraitsInRange:(NSRange)range
+                      withBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block
+{
+    NSParameterAssert(block);
+    
+    [self beginEditing];
+    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange range, BOOL *stop)
+     {
+         UIFontDescriptorSymbolicTraits currentTraits = font.symbolicTraits;
+         UIFontDescriptorSymbolicTraits newTraits = block(currentTraits);
+         UIFont* newFont = [font fontWithSymbolicTraits:newTraits];
+         [self setFont:newFont range:range];
+     }];
+    [self endEditing];
+
+}
+
+- (void)setFontBold:(BOOL)isBold
+{
+    [self setFontBold:isBold range:NSMakeRange(0, self.length)];
+}
+
 // TODO: Check out the effect of the NSStrokeWidthAttributeName attribute
 //       to see if we can also fake bold fonts by increasing the font weight
 - (void)setFontBold:(BOOL)isBold range:(NSRange)range
 {
-    [self beginEditing];
-    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange range, BOOL *stop)
+    [self changeFontTraitsInRange:range withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits)
      {
-         UIFontDescriptorSymbolicTraits traits = font.symbolicTraits;
-         traits &= ~UIFontDescriptorTraitBold;
-         if (isBold) traits |= UIFontDescriptorTraitBold;
-         UIFont* newFont = [font fontWithSymbolicTraits:traits];
-         [self setFont:newFont range:range];
+         UIFontDescriptorSymbolicTraits flag = UIFontDescriptorTraitBold;
+         return isBold ? currentTraits | flag : currentTraits & ~flag;
      }];
-    [self endEditing];
+}
+
+- (void)setFontItalics:(BOOL)isItalics
+{
+    [self setFontItalics:isItalics range:NSMakeRange(0, self.length)];
 }
 
 // TODO: Check out the effect of the NSObliquenessAttributeName attribute
 //       to see if we can also fake italics fonts by increasing the font skew
 - (void)setFontItalics:(BOOL)isItalics range:(NSRange)range
 {
-    [self beginEditing];
-    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange range, BOOL *stop)
-    {
-        UIFontDescriptorSymbolicTraits traits = font.symbolicTraits;
-        traits &= ~UIFontDescriptorTraitItalic;
-        if (isItalics) traits |= UIFontDescriptorTraitItalic;
-        UIFont* newFont = [font fontWithSymbolicTraits:traits];
-        [self setFont:newFont range:range];
-    }];
-    [self endEditing];
+    [self changeFontTraitsInRange:range withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits)
+     {
+         UIFontDescriptorSymbolicTraits flag = UIFontDescriptorTraitItalic;
+         return isItalics ? currentTraits | flag : currentTraits & ~flag;
+     }];
 }
 
 /******************************************************************************/
@@ -196,7 +227,7 @@
 
 - (void)setTextAlignment:(NSTextAlignment)alignment range:(NSRange)range
 {
-    [self modifyParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle) {
+    [self changeParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle) {
         paragraphStyle.alignment = alignment;
     }];
 }
@@ -208,26 +239,24 @@
 
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode range:(NSRange)range
 {
-    [self modifyParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle) {
+    [self changeParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle) {
         paragraphStyle.lineBreakMode = lineBreakMode;
     }];
 }
 
 
-- (void)modifyParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block
+- (void)changeParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block
 {
-    [self modifyParagraphStylesInRange:NSMakeRange(0,self.length) withBlock:block];
+    [self changeParagraphStylesInRange:NSMakeRange(0,self.length) withBlock:block];
 }
 
-- (void)modifyParagraphStylesInRange:(NSRange)range withBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block
+- (void)changeParagraphStylesInRange:(NSRange)range withBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block
 {
     NSParameterAssert(block != nil);
     
     [self beginEditing];
-    [self enumerateAttribute:NSParagraphStyleAttributeName
-                     inRange:range
-                     options:0
-                  usingBlock:^(id style, NSRange range, BOOL *stop)
+    [self enumerateParagraphStylesInRange:range
+                               usingBlock:^(id style, NSRange range, BOOL *stop)
     {
         NSMutableParagraphStyle* newStyle = [style mutableCopy];
         block(newStyle);

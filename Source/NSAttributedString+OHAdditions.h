@@ -64,7 +64,7 @@
                         effectiveRange:(NSRangePointer)aRange;
 
 /******************************************************************************/
-#pragma mark - Text Style
+#pragma mark - Text Underlining
 
 - (BOOL)isTextUnderlinedAtIndex:(NSUInteger)index
                  effectiveRange:(NSRangePointer)aRange;
@@ -73,6 +73,10 @@
                                effectiveRange:(NSRangePointer)aRange;
 - (UIColor*)textUnderlineColorAtIndex:(NSUInteger)index
                        effectiveRange:(NSRangePointer)aRange;
+
+/******************************************************************************/
+#pragma mark - Text Style & Traits
+
 - (BOOL)isFontBoldAtIndex:(NSUInteger)index
            effectiveRange:(NSRangePointer)aRange;
 - (BOOL)isFontItalicsAtIndex:(NSUInteger)index
