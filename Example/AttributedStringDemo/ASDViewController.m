@@ -77,12 +77,12 @@
         [str setTextColor:[UIColor colorWithRed:0 green:0.5 blue:0 alpha:1.] range:listTitleRange];
         [str setTextUnderlineStyle:NSUnderlineStyleThick|NSUnderlinePatternDot range:listTitleRange];
         
-        [str enumerateParagraphStylesInRange:NSMakeRange(0,str.length) usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop)
+        [str changeParagraphStylesInRange:NSMakeRange(0, str.length) withBlock:^(NSMutableParagraphStyle *paragraphStyle)
         {
             // For example, justify only paragraphs that have a indentation
-            if (style.firstLineHeadIndent > 0)
+            if (paragraphStyle.firstLineHeadIndent > 0)
             {
-                [str setTextAlignment:NSTextAlignmentJustified range:range];
+                paragraphStyle.alignment = NSTextAlignmentJustified;
             }
         }];
         
