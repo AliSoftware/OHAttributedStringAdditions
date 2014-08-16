@@ -15,7 +15,7 @@
                   bold:(BOOL)isBold
                 italic:(BOOL)isItalic
 {
-    UIFontDescriptorSymbolicTraits traits;
+    UIFontDescriptorSymbolicTraits traits = 0;
     if (isBold) traits |= UIFontDescriptorTraitBold;
     if (isItalic) traits |= UIFontDescriptorTraitItalic;
     
