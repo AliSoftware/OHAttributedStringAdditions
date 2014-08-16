@@ -1,0 +1,11 @@
+xcodeproj 'AttributedStringDemo.xcodeproj'
+platform :ios, "7.0"
+
+target "AttributedStringDemo" do
+
+end
+
+target "AttributedStringDemoTests" do
+  pod 'OHHTTPStubs/XCTestExpectation'
+end
+

@@ -1,0 +1,10 @@
+PODS:
+  - OHHTTPStubs/XCTestExpectation (3.1.5)
+
+DEPENDENCIES:
+  - OHHTTPStubs/XCTestExpectation
+
+SPEC CHECKSUMS:
+  OHHTTPStubs: c1e362552b71b81e1deb7a80f44c51585b946c43
+
+COCOAPODS: 0.33.1
