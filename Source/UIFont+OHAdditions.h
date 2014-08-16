@@ -14,6 +14,10 @@
  *  Returns a font given a family name, size, and whether it should be bold
  *  and/or italic.
  *
+ *  If the font family is not found, this will return the "Helvetica" font with
+ *  the requested size, but neither bold nor italics (This behavior is
+ *  inherited by NSFontDescriptor's own native behavior)
+ *
  *  @param fontFamily The name of the font family, like "Helvetica"
  *  @param size       The size of the font to return
  *  @param isBold     YES if you need the bold variant of the font

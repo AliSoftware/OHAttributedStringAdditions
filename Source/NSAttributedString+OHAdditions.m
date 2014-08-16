@@ -137,9 +137,18 @@
     return [self attribute:NSFontAttributeName atIndex:index effectiveRange:aRange];
 }
 
-- (void)enumerateFontsInRange:(NSRange)enumerationRange usingBlock:(void (^)(UIFont*, NSRange, BOOL *))block
+- (void)enumerateFontsInRange:(NSRange)enumerationRange
+                   usingBlock:(void (^)(UIFont*, NSRange, BOOL *))block
 {
-    [self enumerateAttribute:NSFontAttributeName inRange:enumerationRange options:0 usingBlock:block];
+    NSParameterAssert(block);
+    
+    [self enumerateAttribute:NSFontAttributeName
+                     inRange:enumerationRange
+                     options:0
+                  usingBlock:^(id font, NSRange range, BOOL *stop)
+     {
+         if (font) block(font, range, stop);
+     }];
 }
 
 /******************************************************************************/
@@ -200,9 +209,18 @@
     return [self attribute:NSLinkAttributeName atIndex:index effectiveRange:aRange];
 }
 
-- (void)enumerateURLsInRange:(NSRange)enumerationRange usingBlock:(void (^)(NSURL*, NSRange, BOOL *))block
+- (void)enumerateURLsInRange:(NSRange)enumerationRange
+                  usingBlock:(void (^)(NSURL*, NSRange, BOOL *))block
 {
-    [self enumerateAttribute:NSLinkAttributeName inRange:enumerationRange options:0 usingBlock:block];
+    NSParameterAssert(block);
+    
+    [self enumerateAttribute:NSLinkAttributeName
+                     inRange:enumerationRange
+                     options:0
+                  usingBlock:^(id url, NSRange range, BOOL *stop)
+     {
+         if (url) block(url, range, stop);
+     }];
 }
 
 /******************************************************************************/
@@ -241,9 +259,18 @@
     return [self attribute:NSParagraphStyleAttributeName atIndex:index effectiveRange:aRange];
 }
 
-- (void)enumerateParagraphStylesInRange:(NSRange)enumerationRange usingBlock:(void (^)(NSParagraphStyle*, NSRange, BOOL *))block
+- (void)enumerateParagraphStylesInRange:(NSRange)enumerationRange
+                             usingBlock:(void (^)(NSParagraphStyle*, NSRange, BOOL *))block
 {
-    [self enumerateAttribute:NSParagraphStyleAttributeName inRange:enumerationRange options:0 usingBlock:block];
+    NSParameterAssert(block);
+    
+    [self enumerateAttribute:NSParagraphStyleAttributeName
+                     inRange:enumerationRange
+                     options:0
+                  usingBlock:^(id style, NSRange range, BOOL *stop)
+     {
+         if (style) block(style, range, stop);
+     }];
 }
 
 @end
