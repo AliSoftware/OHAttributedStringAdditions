@@ -1,6 +1,4 @@
 /*******************************************************************************
- * This software is under the MIT License quoted below:
- *******************************************************************************
  *
  * Copyright (c) 2010 Olivier Halligon
  *
@@ -28,6 +26,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ * Convenience methods to create and manipulate NSAttributedString instances
+ */
 @interface NSAttributedString (OHAdditions)
 
 /******************************************************************************/
@@ -36,12 +37,12 @@
 /**
  *  Build an NSAttributedString from a plain NSString
  *
- *  @param string The string to build the attributed string from. May be nil.
+ *  @param string The string to build the attributed string from. May be `nil`.
  *
  *  @return A new attributed string with the given string and default attributes
  *
  *  @note This is a convenience method around alloc/initWithString but which
- *        allows the parameter to be nil. If you pass nil, this method will
+ *        allows the parameter to be `nil`. If you pass `nil`, this method will
  *        return an empty NSAttributedString.
  */
 + (instancetype)attributedStringWithString:(NSString*)string;
@@ -50,11 +51,12 @@
  *  Build an NSAttributedString from another NSAttributedString
  *
  *  @param attrStr The attributed string to build the attributed string from.
- *                 May be nil.
+ *                 May be `nil`.
  *
  *  @return A new NSAttributedString with the same content as the original
  *
  *  @note This method is generally only useful to build:
+ *
  *         - an NSAttributedString from an NSMutableAttributedString
  *         - or an NSMutableAttributedString from an NSAttributedString
  */
@@ -69,9 +71,11 @@
  *  @param htmlString The HTML string to build the attributed string from
  *
  *  @return An NSAttributedString build from the HTML markup,
- *          or nil if htmlString cannot be parsed.
+ *          or `nil` if `htmlString` cannot be parsed.
  *
- *  @note Important: When this method is called from a thread other than the
+ *  @note **Important**
+ *
+ *        When this method is called from a thread other than the
  *        main thread, the call will be dispatched synchronously on the main
  *        thread (because the HTML importer needs to be executed on the main
  *        thread only). Therefore, you should never call it on a thread that is
@@ -87,7 +91,7 @@
  *  @param htmlString The HTML string to build the attributed string from
  *  @param completion This block is called on the mainQueue upon completion
  *         (when the HTML string has been parsed), returning asynchronously
- *         the resulting NSAttributedString (or nil if it cannot be parsed).
+ *         the resulting `NSAttributedString` (or `nil` if it cannot be parsed).
  *
  *  @note This method is dispatched asynchronously on the main thread (because
  *        the HTML importer needs to be executed on the main thead only).
@@ -120,15 +124,18 @@
  *
  *  @param index  The character index for which to return the font
  *  @param aRange If non-NULL:
- *          - If the font attribute exists at index, upon return aRange
+ *
+ *          - If the font attribute exists at index, upon return `aRange`
  *            contains a range over which the font applies.
- *          - If the font attribute does not exist at index, upon return aRange
- *            contains the range over which the font attribute does not exist.
+ *          - If the font attribute does not exist at index, upon return
+ *            `aRange` contains the range over which the font attribute does
+ *            not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         font attribute.
  *
- *  @return The value for the font attribute of the character at index index,
- *          or nil if there is no font attribute.
+ *  @return The value for the font attribute of the character at index `index`,
+ *          or `nil` if there is no font attribute.
  */
 - (UIFont*)fontAtIndex:(NSUInteger)index
         effectiveRange:(NSRangePointer)aRange;
@@ -148,9 +155,10 @@
  *                          enumerationRange.
  *  @param block The Block to apply to ranges of the font attribute in the
  *               attributed string. The Block takes three arguments:
- *                - font:  The font of the enumerated text run.
- *                - range: An NSRange indicating the run of the font.
- *                - stop:  A reference to a Boolean value. The block can set the
+ *
+ *               - `font`: The font of the enumerated text run.
+ *               - `range`: An NSRange indicating the run of the font.
+ *               - `stop`: A reference to a Boolean value. The block can set the
  *                         value to YES to stop further processing of the set.
  *                         The stop argument is an out-only argument. You should
  *                         only ever set this Boolean to YES within the Block.
@@ -159,7 +167,7 @@
  *        of a given attributed string, even if that attributed string is
  *        composed of multiple fonts with multiple sizes, for example by
  *        applying a new font derived by using
- *        [font fontWithSize:font.pointSize*1.5] on each font run.
+ *        `[font fontWithSize:font.pointSize*1.5]` on each font run.
  */
 - (void)enumerateFontsInRange:(NSRange)enumerationRange
                    usingBlock:(void (^)(UIFont* font, NSRange range, BOOL *stop))block;
@@ -172,16 +180,18 @@
  *
  *  @param index  The character index for which to return the foreground color
  *  @param aRange If non-NULL:
+ *
  *          - If the foreground color attribute exists at index, upon return
- *            aRange contains a range over which the foreground color applies.
+ *            `aRange` contains a range over which the foreground color applies.
  *          - If the foreground color attribute does not exist at index, upon
- *            return aRange contains the range over which the foreground color
+ *            return `aRange` contains the range over which the foreground color
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         foreground color attribute.
  *
  *  @return The value for the foreground color attribute of the character at
- *          index index, or nil if there is no foreground color attribute.
+ *          index `index`, or `nil` if there is no foreground color attribute.
  */
 - (UIColor*)textColorAtIndex:(NSUInteger)index
               effectiveRange:(NSRangePointer)aRange;
@@ -191,16 +201,18 @@
  *
  *  @param index  The character index for which to return the background color
  *  @param aRange If non-NULL:
+ *
  *          - If the background color attribute exists at index, upon return
- *            aRange contains a range over which the background color applies.
+ *            `aRange` contains a range over which the background color applies.
  *          - If the background color attribute does not exist at index, upon
- *            return aRange contains the range over which the background color
+ *            return `aRange` contains the range over which the background color
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         background color attribute.
  *
  *  @return The value for the background color attribute of the character at
- *          index index, or nil if there is no background color attribute.
+ *          index `index`, or `nil` if there is no background color attribute.
  */
 - (UIColor*)textBackgroundColorAtIndex:(NSUInteger)index
                         effectiveRange:(NSRangePointer)aRange;
@@ -214,15 +226,18 @@
  *
  *  @param index  The character index for which to return the underline state
  *  @param aRange If non-NULL:
- *          - If the underline attribute exists at index, upon return aRange
+ *
+ *          - If the underline attribute exists at index, upon return `aRange`
  *            contains a range over which the underline applies (with the same
  *            underlineStyle).
  *          - If the underline attribute does not exist at index, upon return
- *            aRange contains the range over which the underline does not exist.
+ *            `aRange` contains the range over which the underline does not
+ *            exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         underline attribute.
  *
- *  @return YES if the character at index index is underlined,
+ *  @return YES if the character at index `index` is underlined,
  *          NO otherwise.
  *
  *  @note This is a convenience method that calls the method
@@ -237,16 +252,18 @@
  *
  *  @param index  The character index for which to return the underline style
  *  @param aRange If non-NULL:
+ *
  *          - If the underline style attribute exists at index, upon return
- *            aRange contains a range over which the underline style applies.
+ *            `aRange` contains a range over which the underline style applies.
  *          - If the underline style attribute does not exist at index, upon
- *            return aRange contains the range over which the underline style
+ *            return `aRange` contains the range over which the underline style
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         underline style attribute.
  *
  *  @return The value for the underline style attribute of the character at
- *          index index, or NSUnderlineStyleNone if there is no underline style
+ *          index `index`, or NSUnderlineStyleNone if there is no underline style
  *          attribute.
  */
 - (NSUnderlineStyle)textUnderlineStyleAtIndex:(NSUInteger)index
@@ -257,16 +274,18 @@
  *
  *  @param index  The character index for which to return the underline color
  *  @param aRange If non-NULL:
+ *
  *          - If the underline color attribute exists at index, upon return
- *            aRange contains a range over which the underline color applies.
+ *            `aRange` contains a range over which the underline color applies.
  *          - If the underline color attribute does not exist at index, upon
- *            return aRange contains the range over which the underline color
+ *            return `aRange` contains the range over which the underline color
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         underline color attribute.
  *
  *  @return The value for the underline color attribute of the character at
- *          index index, or nil if there is no underline color attribute.
+ *          index `index`, or `nil` if there is no underline color attribute.
  */
 - (UIColor*)textUnderlineColorAtIndex:(NSUInteger)index
                        effectiveRange:(NSRangePointer)aRange;
@@ -279,15 +298,17 @@
  *
  *  @param index  The character index for which to return the bold state
  *  @param aRange If non-NULL:
- *          - If a bold font attribute exists at index, upon return aRange
+ *
+ *          - If a bold font attribute exists at index, upon return `aRange`
  *            contains a range over which the bold font applies.
  *          - If no font attribute exists at index, or the font attribute does
- *            not have bold traits, upon return aRange contains the range over
+ *            not have bold traits, upon return `aRange` contains the range over
  *            which the non-bold font attribute apply.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         bold font attribute.
  *
- *  @return YES if the character at index index is bold,
+ *  @return YES if the character at index `index` is bold,
  *          NO otherwise.
  *
  *  @note This method actually fetch the font at the given index and the uses
@@ -301,15 +322,17 @@
  *
  *  @param index  The character index for which to return the italics state
  *  @param aRange If non-NULL:
- *          - If an italics font attribute exists at index, upon return aRange
+ *
+ *          - If an italics font attribute exists at index, upon return `aRange`
  *            contains a range over which the italics font applies.
  *          - If no font attribute exists at index, or the font attribute does
- *            not have italics traits, upon return aRange contains the range
+ *            not have italics traits, upon return `aRange` contains the range
  *            over which the non-italics font attribute apply.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         italics font attribute.
  *
- *  @return YES if the character at index index is in italics,
+ *  @return YES if the character at index `index` is in italics,
  *          NO otherwise.
  *
  *  @note This method actually fetch the font at the given index and the uses
@@ -326,15 +349,17 @@
  *
  *  @param index  The character index for which to return the URL
  *  @param aRange If non-NULL:
- *          - If the URL attribute exists at index, upon return aRange
+ *
+ *          - If the URL attribute exists at index, upon return `aRange`
  *            contains a range over which the URL applies.
- *          - If the URL attribute does not exist at index, upon return aRange
+ *          - If the URL attribute does not exist at index, upon return `aRange`
  *            contains the range over which the URL attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         URL attribute.
  *
- *  @return The value for the URL attribute of the character at index index,
- *          or nil if there is no URL attribute.
+ *  @return The value for the URL attribute of the character at index `index`,
+ *          or `nil` if there is no URL attribute.
  */
 - (NSURL*)URLAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
 
@@ -353,9 +378,10 @@
  *                          enumerationRange.
  *  @param block The Block to apply to ranges of the URL attribute in the
  *               attributed string. The Block takes three arguments:
- *                - link:  The URL of the enumerated text run.
- *                - range: An NSRange indicating the run of the URL.
- *                - stop:  A reference to a Boolean value. The block can set the
+ *
+ *               - `link`: The URL of the enumerated text run.
+ *               - `range`: An NSRange indicating the run of the URL.
+ *               - `stop`: A reference to a Boolean value. The block can set the
  *                         value to YES to stop further processing of the set.
  *                         The stop argument is an out-only argument. You should
  *                         only ever set this Boolean to YES within the Block.
@@ -371,18 +397,21 @@
  *
  *  @param index  The character index for which to return the character spacing
  *  @param aRange If non-NULL:
- *          - If the kern attribute exists at index, upon return aRange
+ *
+ *          - If the kern attribute exists at index, upon return `aRange`
  *            contains a range over which the kern attribute’s value applies.
- *          - If the kern attribute does not exist at index, upon return aRange
- *            contains the range over which the attribute does not exist.
+ *          - If the kern attribute does not exist at index, upon return
+ *            `aRange` contains the range over which the attribute does not
+ *            exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         kern attribute.
  *
- *  @return The value for the kern attribute of the character at index index,
+ *  @return The value for the kern attribute of the character at index `index`,
  *          or 0 if there is no kern attribute (kerning disabled).
  *
- *  @see https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/TypoFeatures/TextSystemFeatures.html#//apple_ref/doc/uid/TP40009542-CH6-51627-BBCCHIFF
- *       for more info about typographical concepts, kerning and text layout.
+ *  @note For more info about typographical concepts, kerning and text layout,
+ *       see the [Text Programming Guide](https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/TypoFeatures/TextSystemFeatures.html#//apple_ref/doc/uid/TP40009542-CH6-51627-BBCCHIFF)
  */
 - (CGFloat)characterSpacingAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
 
@@ -394,15 +423,17 @@
  *
  *  @param index  The character index for which to return the baseline offset
  *  @param aRange If non-NULL:
+ *
  *          - If the baseline offset attribute exists at index, upon return
- *            aRange contains a range over which the baseline offset applies.
+ *            `aRange` contains a range over which the baseline offset applies.
  *          - If the baseline offset attribute does not exist at index, upon
- *            return aRange contains the range over which the baseline offset
+ *            return `aRange` contains the range over which the baseline offset
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         baseline offset attribute.
  *
- *  @return The value for the baseline offset of the character at index index,
+ *  @return The value for the baseline offset of the character at index `index`,
  *          or 0 if there is no baseline offset attribute.
  */
 - (CGFloat)baselineOffsetAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
@@ -415,17 +446,19 @@
  *
  *  @param index  The character index for which to return the text aligment
  *  @param aRange If non-NULL:
+ *
  *          - If the paragraph style attribute exists at index, upon return
- *            aRange contains a range over which the paragraph style's text
+ *            `aRange` contains a range over which the paragraph style's text
  *            alignment applies.
  *          - If the paragraph style attribute does not exist at index, upon
- *            return aRange contains the range over which the paragraph style
+ *            return `aRange` contains the range over which the paragraph style
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         paragraph style attribute's text aligmnent.
  *
  *  @return The value for the paragraph style's aligment attribute at the
- *          character index index, or the default NSTextAlignmentLeft if there
+ *          character index `index`, or the default NSTextAlignmentLeft if there
  *          is no paragraph style attribute.
  *
  *  @note This is a convenience method that calls
@@ -440,17 +473,19 @@
  *
  *  @param index  The character index for which to return the line break mode
  *  @param aRange If non-NULL:
+ *
  *          - If the paragraph style attribute exists at index, upon return
- *            aRange contains a range over which the paragraph style's line
+ *            `aRange` contains a range over which the paragraph style's line
  *            break mode applies.
  *          - If the paragraph style attribute does not exist at index, upon
- *            return aRange contains the range over which the paragraph style
+ *            return `aRange` contains the range over which the paragraph style
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         paragraph style attribute's line break mode.
  *
  *  @return The value for the paragraph style's line break mode attribute at the
- *          character index index, or the default NSLineBreakByWordWrapping if
+ *          character index `index`, or the default NSLineBreakByWordWrapping if
  *          there is no paragraph style attribute.
  *
  *  @note This is a convenience method that calls
@@ -464,16 +499,18 @@
  *
  *  @param index  The character index for which to return the paragraph style
  *  @param aRange If non-NULL:
+ *
  *          - If the paragraph style attribute exists at index, upon return
- *            aRange contains a range over which the paragraph style applies.
+ *            `aRange` contains a range over which the paragraph style applies.
  *          - If the paragraph style attribute does not exist at index, upon
- *            return aRange contains the range over which the paragraph style
+ *            return `aRange` contains the range over which the paragraph style
  *            attribute does not exist.
+ *
  *         The range isn’t necessarily the maximum range covered by the
  *         paragraph style attribute.
  *
  *  @return The value for the paragraph style attribute at the character index
- *          index, or nil if there is no paragraph style attribute.
+ *          `index`, or `nil` if there is no paragraph style attribute.
  */
 - (NSParagraphStyle*)paragraphStyleAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange;
 
@@ -493,9 +530,11 @@
  *                          clipped to enumerationRange.
  *  @param block The Block to apply to ranges of the paragraph style attribute
  *               in the attributed string. The Block takes three arguments:
- *                - style: The paragraph style of the enumerated text run.
- *                - range: An NSRange indicating the run of the paragraph style.
- *                - stop:  A reference to a Boolean value. The block can set the
+ *
+ *               - `style`: The paragraph style of the enumerated text run.
+ *               - `range`: An NSRange indicating the run of the paragraph
+ *                          style.
+ *               - `stop`: A reference to a Boolean value. The block can set the
  *                         value to YES to stop further processing of the set.
  *                         The stop argument is an out-only argument. You should
  *                         only ever set this Boolean to YES within the Block.

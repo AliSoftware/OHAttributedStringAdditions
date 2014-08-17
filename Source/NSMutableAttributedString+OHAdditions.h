@@ -1,6 +1,4 @@
 /*******************************************************************************
- * This software is under the MIT License quoted below:
- *******************************************************************************
  *
  * Copyright (c) 2010 Olivier Halligon
  *
@@ -28,6 +26,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ *  Convenience methods to modify NSMutableAttributedString instances
+ */
 @interface NSMutableAttributedString (OHAdditions)
 
 /******************************************************************************/
@@ -40,7 +41,7 @@
  *
  *  @param font The font to apply
  *
- *  @note You can take advantage of UIFont+OHAdditions category to create a
+ *  @note You can take advantage of `UIFont+OHAdditions` category to create a
  *        font with a given family, size and traits.
  */
 - (void)setFont:(UIFont*)font;
@@ -51,7 +52,7 @@
  *  @param font  The font to apply
  *  @param range The range of characters to which the font should apply.
  *
- *  @note You can take advantage of UIFont+OHAdditions category to create a
+ *  @note You can take advantage of `UIFont+OHAdditions` category to create a
  *        font with a given family, size and traits.
  */
 - (void)setFont:(UIFont*)font range:(NSRange)range;
@@ -95,25 +96,25 @@
 /**
  *  Set the underline for the whole attributed string.
  *
- *  @param underlined YES if you want the text to be underlined, NO otherwise.
+ *  @param underlined `YES` if you want the text to be underlined, `NO` otherwise.
  *
  *  @note This is a convenience method that ends up calling
- *        setTextUnderlineStyle:range: with the value
- *        (NSUnderlineStyleSingle|NSUnderlinePatternSolid) if underlined is YES,
- *        NSUnderlineStyleNone if underlined is NO.
+ *        `setTextUnderlineStyle:range:` with the value
+ *        `(NSUnderlineStyleSingle|NSUnderlinePatternSolid)` if underlined is
+ *        `YES`, `NSUnderlineStyleNone` if underlined is `NO`.
  */
 - (void)setTextUnderlined:(BOOL)underlined;
 
 /**
  *  Set the underline for the given range of characters.
  *
- *  @param underlined YES if you want the text to be underlined, NO otherwise.
+ *  @param underlined `YES` if you want the text to be underlined, `NO` otherwise.
  *  @param range The range of characters to which the underline should apply.
  *
  *  @note This is a convenience method that ends up calling
- *        setTextUnderlineStyle:range: with the value
- *        (NSUnderlineStyleSingle|NSUnderlinePatternSolid) if underlined is YES,
- *        NSUnderlineStyleNone if underlined is NO.
+ *        `setTextUnderlineStyle:range:` with the value
+ *        `(NSUnderlineStyleSingle|NSUnderlinePatternSolid)` if underlined is
+ *        `YES`, `NSUnderlineStyleNone` if underlined is `NO`.
  */
 - (void)setTextUnderlined:(BOOL)underlined range:(NSRange)range;
 
@@ -121,8 +122,8 @@
  *  Set the underline style for the given range of characters.
  *
  *  @param style The underline style mask, like
- *               NSUnderlineStyleSingle|NSUnderlinePatternDot or
- *               NSUnderlineStyleDouble|NSUnderlinePatternSolid for example.
+ *               `NSUnderlineStyleSingle|NSUnderlinePatternDot` or
+ *               `NSUnderlineStyleDouble|NSUnderlinePatternSolid` for example.
  *  @param range The range of characters to which the underline style should
  *               apply.
  */
@@ -157,9 +158,9 @@
  *  This method is useful to easily change font traits of a whole attributed
  *  string without changing/overridding the font family of each font run. For
  *  example, you can use this method to add or remove the
- *  UIFontDescriptorTraitItalic, UIFontDescriptorTraitBold,
- *  UIFontDescriptorTraitExpanded and/or UIFontDescriptorTraitCondensed traits
- *  of every enumerated font.
+ *  `UIFontDescriptorTraitItalic``, `UIFontDescriptorTraitBold`,
+ *  `UIFontDescriptorTraitExpanded` and/or `UIFontDescriptorTraitCondensed`
+ *  traits of every enumerated font.
  *
  *  @param block A block that takes the enumerated font symbolic traits as
  *               only parameter and returns the new symbolic font traits to
@@ -173,9 +174,9 @@
  *
  *  This method is useful to easily change font traits of a whole range without
  *  changing/overridding the font family of each font run. For example, you can
- *  use this method to add or remove the UIFontDescriptorTraitItalic,
- *  UIFontDescriptorTraitBold, UIFontDescriptorTraitExpanded and/or
- *  UIFontDescriptorTraitCondensed traits of every enumerated font.
+ *  use this method to add or remove the `UIFontDescriptorTraitItalic`,
+ *  `UIFontDescriptorTraitBold`, `UIFontDescriptorTraitExpanded` and/or
+ *  `UIFontDescriptorTraitCondensed` traits of every enumerated font.
  *
  *  @param range The range of characters to which the traits should be
  *               enumerated
@@ -189,54 +190,54 @@
 /**
  *  Change every fonts of the attributed string to their bold variant.
  *
- *  @param isBold YES if you want to use bold font variants, NO if you want to
+ *  @param isBold `YES` if you want to use bold font variants, `NO` if you want to
  *                use non-bold font variants.
  *
  *  @note This is a convenience method that calls
- *        changeFontTraitsInRange:withBlock: with a block that adds (isBold =
- *        YES) or remove (isBold = NO) the UIFontDescriptorTraitBold trait
- *        to each enumerated font.
+ *        `changeFontTraitsInRange:withBlock:` with a block that adds (`isBold`
+ *        = `YES`) or remove (isBold = `NO`) the `UIFontDescriptorTraitBold`
+ *        trait to each enumerated font.
  */
 - (void)setFontBold:(BOOL)isBold;
 
 /**
  *  Change the font of the given range of characters to its bold variant.
  *
- *  @param isBold YES if you want to use bold font variants, NO if you want to
+ *  @param isBold `YES` if you want to use bold font variants, `NO` if you want to
  *                use non-bold font variants.
  *  @param range The range of characters to which the bold font should apply.
  *
  *  @note This is a convenience method that calls
- *        changeFontTraitsInRange:withBlock: with a block that adds (isBold =
- *        YES) or remove (isBold = NO) the UIFontDescriptorTraitBold trait
- *        to each enumerated font.
+ *        `changeFontTraitsInRange:withBlock:` with a block that adds (`isBold`
+ *        = `YES`) or remove (isBold = `NO`) the `UIFontDescriptorTraitBold`
+ *        trait to each enumerated font.
  */
 - (void)setFontBold:(BOOL)isBold range:(NSRange)range;
 
 /**
  *  Change every fonts of the attributed string to their italics variant.
  *
- *  @param isItalics YES if you want to use italics font variants,
- *                   NO if you want to use non-italics font variants.
+ *  @param isItalics `YES` if you want to use italics font variants,
+ *                   `NO` if you want to use non-italics font variants.
  *
  *  @note This is a convenience method that calls
- *        changeFontTraitsInRange:withBlock: with a block that adds (isItalics =
- *        YES) or remove (isItalics = NO) the UIFontDescriptorTraitItalic trait
- *        to each enumerated font.
+ *        `changeFontTraitsInRange:withBlock:` with a block that adds (
+ *        `isItalics` = `YES`) or remove (isItalics = `NO`) the
+ *        `UIFontDescriptorTraitItalic` trait to each enumerated font.
  */
 - (void)setFontItalics:(BOOL)isItalics;
 
 /**
  *  Change the font of the given range of characters to its italics variant.
  *
- *  @param isItalics YES if you want to use italics font variants,
- *                   NO if you want to use non-italics font variants.
+ *  @param isItalics `YES` if you want to use italics font variants,
+ *                   `NO` if you want to use non-italics font variants.
  *  @param range The range of characters to which the italics font should apply.
  *
  *  @note This is a convenience method that calls
  *        changeFontTraitsInRange:withBlock: with a block that adds (isItalics =
- *        YES) or remove (isItalics = NO) the UIFontDescriptorTraitItalic trait
- *        to each enumerated font.
+ *        `YES`) or remove (`isItalics` = `NO`) the
+ *        `UIFontDescriptorTraitItalic` trait to each enumerated font.
  */
 - (void)setFontItalics:(BOOL)isItalics range:(NSRange)range;
 
@@ -261,7 +262,8 @@
  *                          number of points by which to adjust kern-pair
  *                          characters. A value of 0 disables kerning.
  *
- *  @see NSKernAttributeName in "NSAttributedString UIKit Additions Reference"
+ *  @note For more info about typographical concepts, kerning and text layout,
+ *       see the [Text Programming Guide](https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/TypoFeatures/TextSystemFeatures.html#//apple_ref/doc/uid/TP40009542-CH6-51627-BBCCHIFF)
  */
 - (void)setCharacterSpacing:(CGFloat)characterSpacing;
 
@@ -274,7 +276,8 @@
  *  @param range The range of characters to which the character spacing
  *               (kerning) should apply.
  *
- *  @see NSKernAttributeName in "NSAttributedString UIKit Additions Reference"
+ *  @note For more info about typographical concepts, kerning and text layout,
+ *       see the [Text Programming Guide](https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/TypoFeatures/TextSystemFeatures.html#//apple_ref/doc/uid/TP40009542-CH6-51627-BBCCHIFF)
  */
 - (void)setCharacterSpacing:(CGFloat)characterSpacing range:(NSRange)range;
 
