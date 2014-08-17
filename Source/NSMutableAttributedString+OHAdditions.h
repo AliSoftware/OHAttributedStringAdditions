@@ -27,7 +27,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  Convenience methods to modify NSMutableAttributedString instances
+ *  Convenience methods to modify `NSMutableAttributedString` instances
  */
 @interface NSMutableAttributedString (OHAdditions)
 

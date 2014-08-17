@@ -26,7 +26,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  Convenience methods to create new UIFont instances and query font traits
+ *  Convenience methods to create new `UIFont` instances and query font traits
  */
 @interface UIFont (OHAdditions)
 

@@ -27,7 +27,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- * Convenience methods to create and manipulate NSAttributedString instances
+ *  Convenience methods to create and manipulate `NSAttributedString` instances
  */
 @interface NSAttributedString (OHAdditions)
 
