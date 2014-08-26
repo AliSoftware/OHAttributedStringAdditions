@@ -26,6 +26,7 @@
 		094443F4199FDF4F00324F4A /* NSMutableAttributedString+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */; };
 		094443F5199FDF4F00324F4A /* UIFont+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F1199F87B300324F4A /* UIFont+OHAdditions.m */; };
 		094443F7199FE3CF00324F4A /* NSAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */; };
+		094443F919A00D0000324F4A /* NSMutableAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */; };
 		4250C3DB3E24455D816021D6 /* libPods-AttributedStringDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		094443F0199F87B300324F4A /* UIFont+OHAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+OHAdditions.h"; sourceTree = "<group>"; };
 		094443F1199F87B300324F4A /* UIFont+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OHAdditions.m"; sourceTree = "<group>"; };
 		094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringTests.m; sourceTree = "<group>"; };
+		094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableAttributedStringTests.m; sourceTree = "<group>"; };
 		6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributedStringDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63939876FFC4706B89FB17A /* Pods-AttributedStringDemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemoTests.xcconfig"; path = "Pods/Pods-AttributedStringDemoTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +163,7 @@
 			children = (
 				091FEB0E199C11A600505B79 /* UIFontTests.m */,
 				094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */,
+				094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */,
 				091FEB09199C11A600505B79 /* Supporting Files */,
 			);
 			name = "Unit Tests";
@@ -333,6 +336,7 @@
 				094443F5199FDF4F00324F4A /* UIFont+OHAdditions.m in Sources */,
 				094443F7199FE3CF00324F4A /* NSAttributedStringTests.m in Sources */,
 				094443F4199FDF4F00324F4A /* NSMutableAttributedString+OHAdditions.m in Sources */,
+				094443F919A00D0000324F4A /* NSMutableAttributedStringTests.m in Sources */,
 				091FEB0F199C11A600505B79 /* UIFontTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,11 +362,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -374,8 +381,12 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -396,18 +407,25 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;

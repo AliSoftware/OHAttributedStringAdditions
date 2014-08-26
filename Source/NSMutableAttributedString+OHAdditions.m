@@ -120,12 +120,12 @@
     NSParameterAssert(block);
     
     [self beginEditing];
-    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange range, BOOL *stop)
+    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange aRange, BOOL *stop)
      {
          UIFontDescriptorSymbolicTraits currentTraits = font.symbolicTraits;
          UIFontDescriptorSymbolicTraits newTraits = block(currentTraits);
          UIFont* newFont = [font fontWithSymbolicTraits:newTraits];
-         [self setFont:newFont range:range];
+         [self setFont:newFont range:aRange];
      }];
     [self endEditing];
 
@@ -256,11 +256,11 @@
     
     [self beginEditing];
     [self enumerateParagraphStylesInRange:range
-                               usingBlock:^(id style, NSRange range, BOOL *stop)
+                               usingBlock:^(id style, NSRange aRange, BOOL *stop)
     {
         NSMutableParagraphStyle* newStyle = [style mutableCopy];
         block(newStyle);
-        [self setParagraphStyle:newStyle range:range];
+        [self setParagraphStyle:newStyle range:aRange];
     }];
     [self endEditing];
 }

@@ -68,7 +68,7 @@
         
         // Scale the font size by +50%
         [str enumerateFontsInRange:NSMakeRange(0,str.length) usingBlock:^(UIFont *font, NSRange range, BOOL *stop) {
-            UIFont* newFont = [font fontWithSize:font.pointSize * 1.5];
+            UIFont* newFont = [font fontWithSize:font.pointSize * 1.5f];
             [str setFont:newFont range:range];
         }];
         

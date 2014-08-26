@@ -45,7 +45,7 @@ NSSet* attributesSetInString(NSAttributedString* str)
 {
     NSAttributedString* str = [NSAttributedString attributedStringWithString:@"Foo"];
     XCTAssertEqualObjects(str.string, @"Foo");
-    XCTAssertEqual(attributesSetInString(str).count, 0);
+    XCTAssertEqual(attributesSetInString(str).count, 0U);
 }
 
 - (void)test_attributedStringWithString_nil
@@ -53,7 +53,7 @@ NSSet* attributesSetInString(NSAttributedString* str)
     NSAttributedString* str = [NSAttributedString attributedStringWithString:nil];
     XCTAssertNotNil(str);
     XCTAssertEqualObjects(str.string, @"");
-    XCTAssertEqual(attributesSetInString(str).count, 0);
+    XCTAssertEqual(attributesSetInString(str).count, 0U);
 }
 
 - (void)test_attributedStringWithAttributedString
@@ -64,7 +64,7 @@ NSSet* attributesSetInString(NSAttributedString* str)
     
     XCTAssertEqualObjects(str.string, @"Hello, World");
     NSSet* attrs = attributesSetInString(str);
-    XCTAssertEqual(attrs.count, 1);
+    XCTAssertEqual(attrs.count, 1U);
     NSArray* colorAttr = @[ @5 , @2 , @{NSForegroundColorAttributeName:[UIColor blueColor]} ];
     XCTAssertTrue(([attrs containsObject:colorAttr]));
 }
@@ -75,7 +75,7 @@ NSSet* attributesSetInString(NSAttributedString* str)
     
     XCTAssertNotNil(str);
     XCTAssertEqualObjects(str.string, @"");
-    XCTAssertEqual(attributesSetInString(str).count, 0);
+    XCTAssertEqual(attributesSetInString(str).count, 0U);
 }
 
 NSString* HTMLFixture()
@@ -217,33 +217,33 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     
     value = block(str,0,&range);
     XCTAssertEqualObjects(value, expectation1);
-    XCTAssertEqual(range.location, 0);
-    XCTAssertEqual(range.length, 4);
+    XCTAssertEqual(range.location, 0U);
+    XCTAssertEqual(range.length, 4U);
     
     value = block(str,2,&range);
     XCTAssertEqualObjects(value, expectation1);
-    XCTAssertEqual(range.location, 0);
-    XCTAssertEqual(range.length, 4);
+    XCTAssertEqual(range.location, 0U);
+    XCTAssertEqual(range.length, 4U);
     
     value = block(str,4,&range);
     XCTAssertEqualObjects(value, expectation2);
-    XCTAssertEqual(range.location, 4);
-    XCTAssertEqual(range.length, 2);
+    XCTAssertEqual(range.location, 4U);
+    XCTAssertEqual(range.length, 2U);
     
     value = block(str,5,&range);
     XCTAssertEqualObjects(value, expectation2);
-    XCTAssertEqual(range.location, 4);
-    XCTAssertEqual(range.length, 2);
+    XCTAssertEqual(range.location, 4U);
+    XCTAssertEqual(range.length, 2U);
     
     value = block(str,6,&range);
     XCTAssertEqualObjects(value, expectation1);
-    XCTAssertEqual(range.location, 6);
-    XCTAssertEqual(range.length, 5);
+    XCTAssertEqual(range.location, 6U);
+    XCTAssertEqual(range.length, 5U);
     
     value = block(str,10,&range);
     XCTAssertEqualObjects(value, expectation1);
-    XCTAssertEqual(range.location, 6);
-    XCTAssertEqual(range.length, 5);
+    XCTAssertEqual(range.location, 6U);
+    XCTAssertEqual(range.length, 5U);
 }
 
 - (void)runTestWithAttribute:(NSString*)attributeName
