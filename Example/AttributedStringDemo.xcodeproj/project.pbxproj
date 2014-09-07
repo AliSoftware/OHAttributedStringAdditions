@@ -27,6 +27,7 @@
 		094443F5199FDF4F00324F4A /* UIFont+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F1199F87B300324F4A /* UIFont+OHAdditions.m */; };
 		094443F7199FE3CF00324F4A /* NSAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */; };
 		094443F919A00D0000324F4A /* NSMutableAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */; };
+		09A971EC19BCB61300F82C83 /* OHASATestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A971EA19BCB4DA00F82C83 /* OHASATestHelper.m */; };
 		4250C3DB3E24455D816021D6 /* libPods-AttributedStringDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		094443F1199F87B300324F4A /* UIFont+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OHAdditions.m"; sourceTree = "<group>"; };
 		094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringTests.m; sourceTree = "<group>"; };
 		094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableAttributedStringTests.m; sourceTree = "<group>"; };
+		09A971E919BCB4DA00F82C83 /* OHASATestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASATestHelper.h; sourceTree = "<group>"; };
+		09A971EA19BCB4DA00F82C83 /* OHASATestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHASATestHelper.m; sourceTree = "<group>"; };
 		6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributedStringDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63939876FFC4706B89FB17A /* Pods-AttributedStringDemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemoTests.xcconfig"; path = "Pods/Pods-AttributedStringDemoTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +164,8 @@
 		091FEB08199C11A600505B79 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				09A971E919BCB4DA00F82C83 /* OHASATestHelper.h */,
+				09A971EA19BCB4DA00F82C83 /* OHASATestHelper.m */,
 				091FEB0E199C11A600505B79 /* UIFontTests.m */,
 				094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */,
 				094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */,
@@ -334,6 +339,7 @@
 			files = (
 				094443F3199FDF4F00324F4A /* NSAttributedString+OHAdditions.m in Sources */,
 				094443F5199FDF4F00324F4A /* UIFont+OHAdditions.m in Sources */,
+				09A971EC19BCB61300F82C83 /* OHASATestHelper.m in Sources */,
 				094443F7199FE3CF00324F4A /* NSAttributedStringTests.m in Sources */,
 				094443F4199FDF4F00324F4A /* NSMutableAttributedString+OHAdditions.m in Sources */,
 				094443F919A00D0000324F4A /* NSMutableAttributedStringTests.m in Sources */,

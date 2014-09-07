@@ -128,7 +128,6 @@
          [self setFont:newFont range:aRange];
      }];
     [self endEditing];
-
 }
 
 - (void)setFontBold:(BOOL)isBold

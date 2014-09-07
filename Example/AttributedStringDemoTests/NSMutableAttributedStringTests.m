@@ -7,31 +7,389 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "NSMutableAttributedString+OHAdditions.h"
 
-@interface NSMutableAttributedStringTests : XCTestCase
+#import "OHASATestHelper.h"
 
-@end
+@interface NSMutableAttributedStringTests : XCTestCase @end
 
 @implementation NSMutableAttributedStringTests
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
+/******************************************************************************/
+#pragma mark - Text Font
 
-- (void)tearDown
+- (void)test_setFont
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample
-{
-    // TODO: Implement NSMutableAttributedString Tests
-    // XCTFail(@"Implement NSMutableAttributedString tests");
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"Courier" size:42];
+    [str setFont:font];
     
-    // Note: don't forget to test the nil cases (setting an attribute to nil should remove it, not crash)
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:font}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
+
+- (void)test_setFont_range
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"Courier" size:42];
+    [str setFont:font range:NSMakeRange(4,2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@4,@2,@{NSFontAttributeName:font}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+/******************************************************************************/
+#pragma mark - Text Color
+
+- (void)test_setTextColor
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIColor* color = [UIColor purpleColor];
+    [str setTextColor:color];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSForegroundColorAttributeName:color}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextColor_range
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIColor* color = [UIColor purpleColor];
+    [str setTextColor:color range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@4,@2,@{NSForegroundColorAttributeName:color}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextBackgroundColor
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIColor* color = [UIColor purpleColor];
+    [str setTextBackgroundColor:color];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSBackgroundColorAttributeName:color}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextBackgroundColor_range
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIColor* color = [UIColor purpleColor];
+    [str setTextBackgroundColor:color range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@4,@2,@{NSBackgroundColorAttributeName:color}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+/******************************************************************************/
+#pragma mark - Text Underlining
+
+- (void)test_setTextUnderlined_YES
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setTextUnderlined:YES];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextUnderlined_NO
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setTextUnderlined:NO];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleNone)}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextUnderlined_range
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setTextUnderlined:YES range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@4,@2,@{NSUnderlineStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextUnderlineStyle_range
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    NSUnderlineStyle style = NSUnderlinePatternDashDotDot | NSUnderlineStyleDouble;
+    [str setTextUnderlineStyle:style range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@4,@2,@{NSUnderlineStyleAttributeName:@(style)}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextUnderlineColor
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIColor* color = [UIColor orangeColor];
+    [str setTextUnderlineColor:color];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSUnderlineColorAttributeName:color}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setTextUnderlineColor_range
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIColor* color = [UIColor orangeColor];
+    [str setTextUnderlineColor:color range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@4,@2,@{NSUnderlineColorAttributeName:color}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+/******************************************************************************/
+#pragma mark - Text Style & Traits
+
+- (void)test_changeFontTraitsWithBlock
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, 11)];
+    UIFont* font2 = [UIFont fontWithName:@"Courier" size:19];
+    [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
+    
+    [str changeFontTraitsWithBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits) {
+        return currentTraits | UIFontDescriptorTraitBold;
+    }];
+    
+    NSSet* attr = attributesSetInString(str);
+    
+    UIFont* font1Bold = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42];
+    UIFont* font2Bold = [UIFont fontWithName:@"Courier-Bold" size:19];
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font1Bold}],
+                                 @[@4,@2,@{NSFontAttributeName:font2Bold}],
+                                 @[@6,@5,@{NSFontAttributeName:font1Bold}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_changeFontTraitsInRange_withBlock
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, 11)];
+    UIFont* font2 = [UIFont fontWithName:@"Courier" size:19];
+    [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
+    
+    [str changeFontTraitsInRange:NSMakeRange(5, 3) withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits) {
+        return currentTraits | UIFontDescriptorTraitBold;
+    }];
+    
+    NSSet* attr = attributesSetInString(str);
+
+    UIFont* font1Bold = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42];
+    UIFont* font2Bold = [UIFont fontWithName:@"Courier-Bold" size:19];
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font1}],
+                                 @[@4,@1,@{NSFontAttributeName:font2}],
+                                 @[@5,@1,@{NSFontAttributeName:font2Bold}],
+                                 @[@6,@2,@{NSFontAttributeName:font1Bold}],
+                                 @[@8,@3,@{NSFontAttributeName:font1}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setFontBold_YES
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontBold:YES];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontBold = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontBold}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setFontBold_NO
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontBold:NO];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontNoBold = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontNoBold}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setFontBold_range_YES
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontBold:YES range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontBold = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font}],
+                                 @[@4,@2,@{NSFontAttributeName:fontBold}],
+                                 @[@6,@5,@{NSFontAttributeName:font}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setFontBold_range_NO
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontBold:NO range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontNoBold = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font}],
+                                 @[@4,@2,@{NSFontAttributeName:fontNoBold}],
+                                 @[@6,@5,@{NSFontAttributeName:font}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+
+
+
+
+
+// ------------------------------------------------------------------------------------------
+#if 0 // TODO - Work In Progress
+// ------------------------------------------------------------------------------------------
+
+- (void)test_setFontItalics
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setFontItalics_range
+{
+    #pragma message("Implement this")
+}
+
+/******************************************************************************/
+#pragma mark - Link
+
+- (void)test_setURL_range
+{
+    #pragma message("Implement this")
+}
+
+/******************************************************************************/
+#pragma mark - Character Spacing
+
+- (void)test_setCharacterSpacing
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setCharacterSpacing_range
+{
+    #pragma message("Implement this")
+}
+
+/******************************************************************************/
+#pragma mark - Subscript and Superscript
+
+- (void)test_setBaselineOffset
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setBaselineOffset_range
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setSuperscriptForRange
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setSubscriptForRange
+{
+    #pragma message("Implement this")
+}
+
+/******************************************************************************/
+#pragma mark - Paragraph Style
+
+- (void)test_setTextAlignment
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setTextAlignment_range
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setLineBreakMode
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setLineBreakMode_range
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_changeParagraphStylesWithBlock
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_changeParagraphStylesInRange_withBlock
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setParagraphStyle
+{
+    #pragma message("Implement this")
+}
+
+- (void)test_setParagraphStyle_range
+{
+    #pragma message("Implement this")
+}
+
+#endif
 
 @end
