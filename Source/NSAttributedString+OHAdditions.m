@@ -126,7 +126,8 @@
                                        context:nil];
 
     // We need to ceil the returned values (see Apple doc)
-    return CGSizeMake( ceil((double)bounds.size.width), ceil((double)bounds.size.height) );
+    return CGSizeMake((CGFloat)ceil((double)bounds.size.width),
+                      (CGFloat)ceil((double)bounds.size.height) );
 }
 
 /******************************************************************************/
