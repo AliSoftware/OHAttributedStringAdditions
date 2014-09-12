@@ -284,23 +284,68 @@
     XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
-
-
-
-
-
-// ------------------------------------------------------------------------------------------
-#if 0 // TODO - Work In Progress
-// ------------------------------------------------------------------------------------------
-
-- (void)test_setFontItalics
+- (void)test_setFontItalics_NO
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontItalics:YES];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontItalic = [UIFont fontWithName:@"HelveticaNeue-Italic" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontItalic}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
-- (void)test_setFontItalics_range
+- (void)test_setFontItalics_YES
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue-Italic" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontItalics:NO];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontNoItalic = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontNoItalic}] ];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setFontItalics_range_YES
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontItalics:YES range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontItalic = [UIFont fontWithName:@"HelveticaNeue-Italic" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font}],
+                                 @[@4,@2,@{NSFontAttributeName:fontItalic}],
+                                 @[@6,@5,@{NSFontAttributeName:font}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+}
+
+- (void)test_setFontItalics_range_NO
+{
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"HelveticaNeue-Italic" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setFontItalics:NO range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    UIFont* fontNoItalic = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font}],
+                                 @[@4,@2,@{NSFontAttributeName:fontNoItalic}],
+                                 @[@6,@5,@{NSFontAttributeName:font}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 /******************************************************************************/
@@ -308,7 +353,14 @@
 
 - (void)test_setURL_range
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    NSURL* url = [NSURL URLWithString:@"foo://bar"];
+    [str addAttribute:NSLinkAttributeName value:url range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@4,@2,@{NSLinkAttributeName:url}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 /******************************************************************************/
@@ -316,12 +368,24 @@
 
 - (void)test_setCharacterSpacing
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setCharacterSpacing:42];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@0,@11,@{NSKernAttributeName: @42}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setCharacterSpacing_range
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setCharacterSpacing:42 range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@4,@2,@{NSKernAttributeName: @42}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 /******************************************************************************/
@@ -329,26 +393,66 @@
 
 - (void)test_setBaselineOffset
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setBaselineOffset:42];
+
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@0,@11,@{NSBaselineOffsetAttributeName:@42}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setBaselineOffset_range
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setBaselineOffset:42 range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@4,@2,@{NSBaselineOffsetAttributeName:@42}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setSuperscriptForRange
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"Helvetica" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setSuperscriptForRange:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font}],
+                                 @[@4,@2,@{NSFontAttributeName:font, NSBaselineOffsetAttributeName:@(21)}],
+                                 @[@6,@5,@{NSFontAttributeName:font}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setSubscriptForRange
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    UIFont* font = [UIFont fontWithName:@"Helvetica" size:42];
+    [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
+    [str setSubscriptForRange:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSFontAttributeName:font}],
+                                 @[@4,@2,@{NSFontAttributeName:font, NSBaselineOffsetAttributeName:@(-21)}],
+                                 @[@6,@5,@{NSFontAttributeName:font}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 /******************************************************************************/
 #pragma mark - Paragraph Style
+
+// ------------------------------------------------------------------------------------------
+#if 0 // TODO - Work In Progress
+// ------------------------------------------------------------------------------------------
 
 - (void)test_setTextAlignment
 {
