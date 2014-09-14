@@ -108,22 +108,24 @@
 /******************************************************************************/
 #pragma mark - Text Style & Traits
 
-- (void)changeFontTraitsWithBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block
+- (void)changeFontTraitsWithBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits, NSRange))block
 {
     [self changeFontTraitsInRange:NSMakeRange(0, self.length)
                         withBlock:block];
 }
 
 - (void)changeFontTraitsInRange:(NSRange)range
-                      withBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block
+                      withBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits, NSRange))block
 {
     NSParameterAssert(block);
-    
     [self beginEditing];
-    [self enumerateFontsInRange:range usingBlock:^(UIFont* font, NSRange aRange, BOOL *stop)
+    [self enumerateFontsInRange:range
+               includeUndefined:YES
+                     usingBlock:^(UIFont* font, NSRange aRange, BOOL *stop)
      {
+         if (!font) font = [[self class] defaultFont];
          UIFontDescriptorSymbolicTraits currentTraits = font.symbolicTraits;
-         UIFontDescriptorSymbolicTraits newTraits = block(currentTraits);
+         UIFontDescriptorSymbolicTraits newTraits = block(currentTraits, aRange);
          UIFont* newFont = [font fontWithSymbolicTraits:newTraits];
          [self setFont:newFont range:aRange];
      }];
@@ -139,7 +141,7 @@
 //       to see if we can also fake bold fonts by increasing the font weight
 - (void)setFontBold:(BOOL)isBold range:(NSRange)range
 {
-    [self changeFontTraitsInRange:range withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits)
+    [self changeFontTraitsInRange:range withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits, NSRange enumeratedRange)
      {
          UIFontDescriptorSymbolicTraits flag = UIFontDescriptorTraitBold;
          return isBold ? currentTraits | flag : currentTraits & ~flag;
@@ -155,7 +157,7 @@
 //       to see if we can also fake italics fonts by increasing the font skew
 - (void)setFontItalics:(BOOL)isItalics range:(NSRange)range
 {
-    [self changeFontTraitsInRange:range withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits)
+    [self changeFontTraitsInRange:range withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits, NSRange enumeratedRange)
      {
          UIFontDescriptorSymbolicTraits flag = UIFontDescriptorTraitItalic;
          return isItalics ? currentTraits | flag : currentTraits & ~flag;
@@ -226,7 +228,7 @@
 
 - (void)setTextAlignment:(NSTextAlignment)alignment range:(NSRange)range
 {
-    [self changeParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle) {
+    [self changeParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle, NSRange enumeratedRange) {
         paragraphStyle.alignment = alignment;
     }];
 }
@@ -238,27 +240,28 @@
 
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode range:(NSRange)range
 {
-    [self changeParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle) {
+    [self changeParagraphStylesInRange:range withBlock:^(NSMutableParagraphStyle *paragraphStyle, NSRange enumeratedRange) {
         paragraphStyle.lineBreakMode = lineBreakMode;
     }];
 }
 
 
-- (void)changeParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block
+- (void)changeParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle*, NSRange))block
 {
     [self changeParagraphStylesInRange:NSMakeRange(0,self.length) withBlock:block];
 }
 
-- (void)changeParagraphStylesInRange:(NSRange)range withBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block
+- (void)changeParagraphStylesInRange:(NSRange)range withBlock:(void(^)(NSMutableParagraphStyle*, NSRange))block
 {
     NSParameterAssert(block != nil);
-    
     [self beginEditing];
     [self enumerateParagraphStylesInRange:range
+                         includeUndefined:YES
                                usingBlock:^(id style, NSRange aRange, BOOL *stop)
     {
+        if (!style) style = [NSParagraphStyle defaultParagraphStyle];
         NSMutableParagraphStyle* newStyle = [style mutableCopy];
-        block(newStyle);
+        block(newStyle, aRange);
         [self setParagraphStyle:newStyle range:aRange];
     }];
     [self endEditing];

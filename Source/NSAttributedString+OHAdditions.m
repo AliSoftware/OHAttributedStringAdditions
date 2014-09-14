@@ -133,12 +133,19 @@
 /******************************************************************************/
 #pragma mark - Text Font
 
++ (UIFont*)defaultFont
+{
+    // The default font used for NSAttributedString according to the doc
+    return [UIFont fontWithName:@"Helvetica" size:12];
+}
+
 - (UIFont*)fontAtIndex:(NSUInteger)index effectiveRange:(NSRangePointer)aRange
 {
     return [self attribute:NSFontAttributeName atIndex:index effectiveRange:aRange];
 }
 
 - (void)enumerateFontsInRange:(NSRange)enumerationRange
+             includeUndefined:(BOOL)includeUndefined
                    usingBlock:(void (^)(UIFont*, NSRange, BOOL *))block
 {
     NSParameterAssert(block);
@@ -146,9 +153,9 @@
     [self enumerateAttribute:NSFontAttributeName
                      inRange:enumerationRange
                      options:0
-                  usingBlock:^(id font, NSRange range, BOOL *stop)
+                  usingBlock:^(id font, NSRange aRange, BOOL *stop)
      {
-         if (font) block(font, range, stop);
+         if (font || includeUndefined) block(font, aRange, stop);
      }];
 }
 
@@ -261,6 +268,7 @@
 }
 
 - (void)enumerateParagraphStylesInRange:(NSRange)enumerationRange
+                       includeUndefined:(BOOL)includeUndefined
                              usingBlock:(void (^)(NSParagraphStyle*, NSRange, BOOL *))block
 {
     NSParameterAssert(block);
@@ -268,9 +276,9 @@
     [self enumerateAttribute:NSParagraphStyleAttributeName
                      inRange:enumerationRange
                      options:0
-                  usingBlock:^(id style, NSRange range, BOOL *stop)
+                  usingBlock:^(id style, NSRange aRange, BOOL *stop)
      {
-         if (style) block(style, range, stop);
+         if (style || includeUndefined) block(style, aRange, stop);
      }];
 }
 

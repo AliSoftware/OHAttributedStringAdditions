@@ -67,8 +67,12 @@
         NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithHTML:html];
         
         // Scale the font size by +50%
-        [str enumerateFontsInRange:NSMakeRange(0,str.length) usingBlock:^(UIFont *font, NSRange range, BOOL *stop) {
-            UIFont* newFont = [font fontWithSize:font.pointSize * 1.5f];
+        [str enumerateFontsInRange:NSMakeRange(0,str.length)
+                  includeUndefined:YES
+                        usingBlock:^(UIFont *font, NSRange range, BOOL *stop)
+        {
+            if (!font) font = [NSAttributedString defaultFont];
+            UIFont* newFont = [font fontWithSize:font.pointSize * 1.5f] ;
             [str setFont:newFont range:range];
         }];
         
@@ -77,12 +81,13 @@
         [str setTextColor:[UIColor colorWithRed:0 green:0.5 blue:0 alpha:1.] range:listTitleRange];
         [str setTextUnderlineStyle:NSUnderlineStyleThick|NSUnderlinePatternDot range:listTitleRange];
         
-        [str changeParagraphStylesInRange:NSMakeRange(0, str.length) withBlock:^(NSMutableParagraphStyle *paragraphStyle)
+        [str changeParagraphStylesInRange:NSMakeRange(0, str.length)
+                                withBlock:^(NSMutableParagraphStyle* style, NSRange aRange)
         {
             // For example, justify only paragraphs that have a indentation
-            if (paragraphStyle.firstLineHeadIndent > 0)
+            if (style.firstLineHeadIndent > 0)
             {
-                paragraphStyle.alignment = NSTextAlignmentJustified;
+                style.alignment = NSTextAlignmentJustified;
             }
         }];
         

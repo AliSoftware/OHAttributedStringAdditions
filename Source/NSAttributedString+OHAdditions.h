@@ -120,6 +120,14 @@
 #pragma mark - Text Font
 
 /**
+ *  The default font used in an NSAttributedString when no specific font
+ *  attribute is defined.
+ *
+ *  @return The "Helvetica" font with size 12.
+ */
++ (UIFont*)defaultFont;
+
+/**
  *  Returns the font applied at the given character index.
  *
  *  @param index  The character index for which to return the font
@@ -162,14 +170,12 @@
  *                         value to YES to stop further processing of the set.
  *                         The stop argument is an out-only argument. You should
  *                         only ever set this Boolean to YES within the Block.
- *
- *  @note This method can be useful for example to change the size of the font
- *        of a given attributed string, even if that attributed string is
- *        composed of multiple fonts with multiple sizes, for example by
- *        applying a new font derived by using
- *        `[font fontWithSize:font.pointSize*1.5]` on each font run.
+ *  @param includeUndefined If set to YES, this method will also call the block
+ *                          for every range that does not have any font defined,
+ *                          passing nil to the first argument of the block.
  */
 - (void)enumerateFontsInRange:(NSRange)enumerationRange
+             includeUndefined:(BOOL)includeUndefined
                    usingBlock:(void (^)(UIFont* font, NSRange range, BOOL *stop))block;
 
 /******************************************************************************/
@@ -386,7 +392,8 @@
  *                         The stop argument is an out-only argument. You should
  *                         only ever set this Boolean to YES within the Block.
  */
-- (void)enumerateURLsInRange:(NSRange)enumerationRange usingBlock:(void (^)(NSURL* link, NSRange range, BOOL *stop))block;
+- (void)enumerateURLsInRange:(NSRange)enumerationRange
+                  usingBlock:(void (^)(NSURL* link, NSRange range, BOOL *stop))block;
 
 /******************************************************************************/
 #pragma mark - Character Spacing
@@ -538,8 +545,14 @@
  *                         value to YES to stop further processing of the set.
  *                         The stop argument is an out-only argument. You should
  *                         only ever set this Boolean to YES within the Block.
+ *  @param includeUndefined If set to YES, this method will also call the block
+ *                          for every range that does not have any paragraph style
+ *                          defined, passing nil to the first argument of the block.
+ *
  */
-- (void)enumerateParagraphStylesInRange:(NSRange)enumerationRange usingBlock:(void (^)(NSParagraphStyle* style, NSRange range, BOOL *stop))block;
+- (void)enumerateParagraphStylesInRange:(NSRange)enumerationRange
+                       includeUndefined:(BOOL)includeUndefined
+                             usingBlock:(void (^)(NSParagraphStyle* style, NSRange range, BOOL *stop))block;
 
 @end
 

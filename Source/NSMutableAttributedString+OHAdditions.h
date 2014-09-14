@@ -165,8 +165,15 @@
  *  @param block A block that takes the enumerated font symbolic traits as
  *               only parameter and returns the new symbolic font traits to
  *               apply.
+ *
+ *  @note This method also calls the enumeration block for ranges where no font
+ *        is explicitly defined (no NSFontAttribute set); in such case, the
+ *        traits of the [NSAttributedString defaultFont] are passed as first
+ *        parameter of the block. The font attribute is then explicitly
+ *        set (even if it did not exist before), to be able to change the font
+ *        traits for those ranges as well instead of keeping the default.
  */
-- (void)changeFontTraitsWithBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block;
+- (void)changeFontTraitsWithBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits, NSRange aRange))block;
 
 /**
  *  Enumerates on every font in the given range of characters, allowing you to
@@ -183,9 +190,16 @@
  *  @param block A block that takes the enumerated font symbolic traits as
  *               only parameter and returns the new symbolic font traits to
  *               apply.
+ *
+ *  @note This method also calls the enumeration block for ranges where no font
+ *        is explicitly defined (no NSFontAttribute set); in such case, the
+ *        traits of the [NSAttributedString defaultFont] are passed as first
+ *        parameter of the block. The font attribute is then explicitly
+ *        set (even if it did not exist before), to be able to change the font
+ *        traits for those ranges as well instead of keeping the default.
  */
 - (void)changeFontTraitsInRange:(NSRange)range
-                      withBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits))block;
+                      withBlock:(UIFontDescriptorSymbolicTraits(^)(UIFontDescriptorSymbolicTraits currentTraits, NSRange aRange))block;
 
 /**
  *  Change every fonts of the attributed string to their bold variant.
@@ -377,8 +391,15 @@
  *        attributed string, create a mutable copy of the NSParagraphStyle to
  *        pass it to the block, then reapply the modified paragraph style to
  *        the original range.
+ *
+ *  @note This method also calls the enumeration block for ranges where no
+ *        paragraph style is explicitly defined (no NSParagraphStyleAttribute
+ *        set); in such case, the [NSParagraphStyle defaultStyle] is passed as
+ *        first parameter of the block. The paragraph style attribute is then
+ *        explicitly set (even if it did not exist before), to be able to change
+ *        the paragraph style for those ranges as well instead of keeping the default
  */
-- (void)changeParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block;
+- (void)changeParagraphStylesWithBlock:(void(^)(NSMutableParagraphStyle* currentStyle, NSRange aRange))block;
 
 /**
  *  This methods allows you to change only certain Paragraph Styles properties
@@ -398,9 +419,16 @@
  *        range of your attributed string, create a mutable copy of the
  *        NSParagraphStyle to pass it to the block, then reapply the modified
  *        paragraph style to the original range.
+ *
+ *  @note This method also calls the enumeration block for ranges where no
+ *        paragraph style is explicitly defined (no NSParagraphStyleAttribute
+ *        set); in such case, the [NSParagraphStyle defaultStyle] is passed as
+ *        first parameter of the block. The paragraph style attribute is then
+ *        explicitly set (even if it did not exist before), to be able to change
+ *        the paragraph style for those ranges as well instead of keeping the default
  */
 - (void)changeParagraphStylesInRange:(NSRange)range
-                           withBlock:(void(^)(NSMutableParagraphStyle* paragraphStyle))block;
+                           withBlock:(void(^)(NSMutableParagraphStyle* currentStyle, NSRange aRange))block;
 
 /**
  *  Override the Paragraph Styles, dropping the ones previously set if any.

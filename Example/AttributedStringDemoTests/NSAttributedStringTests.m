@@ -247,7 +247,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
      }];
 }
 
-- (void)test_enumerateFontsInRange_usingBlock_01
+- (void)test_enumerateFontsInRange_includeUndefined_usingBlock_01
 {
     NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
     UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
@@ -257,6 +257,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 
     NSMutableArray* stack = [NSMutableArray array];
     [str enumerateFontsInRange:NSMakeRange(0, str.length)
+              includeUndefined:YES
                     usingBlock:^(UIFont *font, NSRange range, BOOL *stop)
      {
          [stack addObject:@[@(range.location), @(range.length), font ?: [NSNull null]]];
@@ -268,7 +269,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     XCTAssertEqualObjects(stack, expectedStack);
 }
 
-- (void)test_enumerateFontsInRange_usingBlock_02
+- (void)test_enumerateFontsInRange_includeUndefined_usingBlock_02
 {
     NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
     UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
@@ -278,6 +279,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     
     NSMutableArray* stack = [NSMutableArray array];
     [str enumerateFontsInRange:NSMakeRange(5, 3)
+              includeUndefined:YES
                     usingBlock:^(UIFont *font, NSRange range, BOOL *stop)
      {
          [stack addObject:@[@(range.location), @(range.length), font ?: [NSNull null]]];
@@ -285,6 +287,43 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     
     NSArray* expectedStack = @[ @[@5,@1,font2],
                                 @[@6,@2,font1]];
+    XCTAssertEqualObjects(stack, expectedStack);
+}
+
+- (void)test_enumerateFontsInRange_includeUndefined_usingBlock_03
+{
+    NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
+    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(4, 2)];
+    
+    NSMutableArray* stack = [NSMutableArray array];
+    [str enumerateFontsInRange:NSMakeRange(5, 3)
+              includeUndefined:NO
+                    usingBlock:^(UIFont *aFont, NSRange range, BOOL *stop)
+     {
+         [stack addObject:@[@(range.location), @(range.length), aFont ?: [NSNull null]]];
+     }];
+    
+    NSArray* expectedStack = @[ @[@5,@1,font1] ];
+    XCTAssertEqualObjects(stack, expectedStack);
+}
+
+- (void)test_enumerateFontsInRange_includeUndefined_usingBlock_04
+{
+    NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
+    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(4, 2)];
+    
+    NSMutableArray* stack = [NSMutableArray array];
+    [str enumerateFontsInRange:NSMakeRange(5, 3)
+              includeUndefined:YES
+                    usingBlock:^(UIFont *aFont, NSRange range, BOOL *stop)
+     {
+         [stack addObject:@[@(range.location), @(range.length), aFont ?: [NSNull null]]];
+     }];
+    
+    NSArray* expectedStack = @[ @[@5,@1,font1],
+                                @[@6,@2,[NSNull null]]];
     XCTAssertEqualObjects(stack, expectedStack);
 }
 
@@ -535,7 +574,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
      }];
 }
 
-- (void)test_enumerateParagraphStylesInRange_usingBlock_01
+- (void)test_enumerateParagraphStylesInRange_includeUndefined_usingBlock_01
 {
     NSParagraphStyle* defaultStyle = [NSParagraphStyle defaultParagraphStyle];
     NSMutableParagraphStyle* style1 = [defaultStyle mutableCopy];
@@ -554,7 +593,8 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     
     NSMutableArray* stack = [NSMutableArray array];
     [str enumerateParagraphStylesInRange:NSMakeRange(0, str.length)
-                   usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop)
+                        includeUndefined:NO
+                              usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop)
      {
          [stack addObject:@[@(range.location), @(range.length), style?:[NSNull null]]];
      }];
@@ -565,7 +605,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     XCTAssertEqualObjects(stack, expectedStack);
 }
 
-- (void)test_enumerateParagraphStylesInRange_usingBlock_02
+- (void)test_enumerateParagraphStylesInRange_includeUndefined_usingBlock_02
 {
     NSParagraphStyle* defaultStyle = [NSParagraphStyle defaultParagraphStyle];
     NSMutableParagraphStyle* style1 = [defaultStyle mutableCopy];
@@ -584,6 +624,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     
     NSMutableArray* stack = [NSMutableArray array];
     [str enumerateParagraphStylesInRange:NSMakeRange(6, 4)
+                        includeUndefined:NO
                               usingBlock:^(NSParagraphStyle *style, NSRange range, BOOL *stop)
      {
          [stack addObject:@[@(range.location), @(range.length), style?:[NSNull null]]];

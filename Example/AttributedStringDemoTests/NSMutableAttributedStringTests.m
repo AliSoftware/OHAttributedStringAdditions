@@ -176,7 +176,7 @@
     UIFont* font2 = [UIFont fontWithName:@"Courier" size:19];
     [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
     
-    [str changeFontTraitsWithBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits) {
+    [str changeFontTraitsWithBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits, NSRange _) {
         return currentTraits | UIFontDescriptorTraitBold;
     }];
     
@@ -201,7 +201,7 @@
     UIFont* font2 = [UIFont fontWithName:@"Courier" size:19];
     [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
     
-    [str changeFontTraitsInRange:NSMakeRange(5, 3) withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits) {
+    [str changeFontTraitsInRange:NSMakeRange(5, 3) withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits, NSRange _) {
         return currentTraits | UIFontDescriptorTraitBold;
     }];
     
@@ -450,50 +450,151 @@
 /******************************************************************************/
 #pragma mark - Paragraph Style
 
-// ------------------------------------------------------------------------------------------
-#if 0 // TODO - Work In Progress
-// ------------------------------------------------------------------------------------------
-
 - (void)test_setTextAlignment
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setTextAlignment:NSTextAlignmentJustified];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.alignment = NSTextAlignmentJustified;
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@0,@11,@{NSParagraphStyleAttributeName:style}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setTextAlignment_range
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setTextAlignment:NSTextAlignmentJustified range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.alignment = NSTextAlignmentJustified;
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@4,@2,@{NSParagraphStyleAttributeName:style}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
+
 }
+
 
 - (void)test_setLineBreakMode
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@0,@11,@{NSParagraphStyleAttributeName:style}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setLineBreakMode_range
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    [str setLineBreakMode:NSLineBreakByTruncatingMiddle range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@4,@2,@{NSParagraphStyleAttributeName:style}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_changeParagraphStylesWithBlock
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    NSMutableParagraphStyle* styleMiddle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    styleMiddle.firstLineHeadIndent = 42;
+    [str addAttribute:NSParagraphStyleAttributeName value:styleMiddle range:NSMakeRange(4, 2)];
+    
+    [str changeParagraphStylesWithBlock:^(NSMutableParagraphStyle *currentStyle, NSRange aRange) {
+        currentStyle.lineSpacing = 29;
+    }];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSMutableParagraphStyle* styleOther = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    styleMiddle.lineSpacing = 29;
+    styleOther.lineSpacing = 29;
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@0,@4,@{NSParagraphStyleAttributeName:styleOther}],
+                                 @[@4,@2,@{NSParagraphStyleAttributeName:styleMiddle}],
+                                 @[@6,@5,@{NSParagraphStyleAttributeName:styleOther}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_changeParagraphStylesInRange_withBlock
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    NSMutableParagraphStyle* styleMiddleOriginal = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    styleMiddleOriginal.firstLineHeadIndent = 42;
+    [str addAttribute:NSParagraphStyleAttributeName value:styleMiddleOriginal range:NSMakeRange(4, 2)];
+    
+    [str changeParagraphStylesInRange:NSMakeRange(5, 3) withBlock:^(NSMutableParagraphStyle *currentStyle, NSRange aRange) {
+        currentStyle.lineSpacing = 29;
+    }];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSMutableParagraphStyle* styleOtherModified = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    NSMutableParagraphStyle* styleMiddleModified = [styleMiddleOriginal mutableCopy];
+    styleMiddleModified.lineSpacing = 29;
+    styleOtherModified.lineSpacing = 29;
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@4,@1,@{NSParagraphStyleAttributeName:styleMiddleOriginal}],
+                                 @[@5,@1,@{NSParagraphStyleAttributeName:styleMiddleModified}],
+                                 @[@6,@2,@{NSParagraphStyleAttributeName:styleOtherModified}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setParagraphStyle
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.firstLineHeadIndent = 42;
+    style.lineSpacing = 29;
+    style.defaultTabInterval = 37;
+    style.paragraphSpacing = 18;
+    style.alignment = NSTextAlignmentRight;
+    
+    [str setParagraphStyle:style];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObject:@[@0,@11,@{NSParagraphStyleAttributeName:style}]];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
 
 - (void)test_setParagraphStyle_range
 {
-    #pragma message("Implement this")
+    NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
+    NSMutableParagraphStyle* style1 = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style1.lineSpacing = 73;
+    style1.tailIndent = 19;
+    [str setParagraphStyle:style1 range:NSMakeRange(3, 4)];
+    
+    NSMutableParagraphStyle* style2 = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style2.firstLineHeadIndent = 42;
+    style2.lineSpacing = 29;
+    style2.defaultTabInterval = 37;
+    style2.paragraphSpacing = 18;
+    style2.alignment = NSTextAlignmentRight;
+    [str setParagraphStyle:style2 range:NSMakeRange(4, 2)];
+    
+    NSSet* attr = attributesSetInString(str);
+    NSSet* expectedAttributes = [NSSet setWithObjects:
+                                 @[@3,@1,@{NSParagraphStyleAttributeName:style1}],
+                                 @[@4,@2,@{NSParagraphStyleAttributeName:style2}],
+                                 @[@6,@1,@{NSParagraphStyleAttributeName:style1}],
+                                 nil];
+    
+    XCTAssertEqualObjects(attr, expectedAttributes);
 }
-
-#endif
 
 @end
