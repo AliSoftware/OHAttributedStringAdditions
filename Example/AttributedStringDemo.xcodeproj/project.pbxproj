@@ -19,16 +19,11 @@
 		091FEB05199C11A600505B79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091FEAE7199C11A600505B79 /* UIKit.framework */; };
 		091FEB0F199C11A600505B79 /* UIFontTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB0E199C11A600505B79 /* UIFontTests.m */; };
 		091FEB1A199C135100505B79 /* ASDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 091FEB19199C135100505B79 /* ASDViewController.xib */; };
-		091FEB25199C149F00505B79 /* NSAttributedString+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB1D199C149F00505B79 /* NSAttributedString+OHAdditions.m */; };
-		091FEB2B199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */; };
-		094443F2199F87B300324F4A /* UIFont+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F1199F87B300324F4A /* UIFont+OHAdditions.m */; };
-		094443F3199FDF4F00324F4A /* NSAttributedString+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB1D199C149F00505B79 /* NSAttributedString+OHAdditions.m */; };
-		094443F4199FDF4F00324F4A /* NSMutableAttributedString+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */; };
-		094443F5199FDF4F00324F4A /* UIFont+OHAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F1199F87B300324F4A /* UIFont+OHAdditions.m */; };
 		094443F7199FE3CF00324F4A /* NSAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */; };
 		094443F919A00D0000324F4A /* NSMutableAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */; };
 		09A971EC19BCB61300F82C83 /* OHASATestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A971EA19BCB4DA00F82C83 /* OHASATestHelper.m */; };
 		4250C3DB3E24455D816021D6 /* libPods-AttributedStringDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */; };
+		A5190948151877D3E866AF5C /* libPods-AttributedStringDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48842986E011607035CF900E /* libPods-AttributedStringDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07D05AA7B4E2CEAA2CBF3370 /* Pods-AttributedStringDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemoTests/Pods-AttributedStringDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		091FEAE0199C11A600505B79 /* AttributedStringDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AttributedStringDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		091FEAE3199C11A600505B79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		091FEAE5199C11A600505B79 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,20 +56,16 @@
 		091FEB0E199C11A600505B79 /* UIFontTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIFontTests.m; sourceTree = "<group>"; };
 		091FEB18199C12B300505B79 /* OHAttributedStringAdditions.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = OHAttributedStringAdditions.podspec; path = ../OHAttributedStringAdditions.podspec; sourceTree = "<group>"; };
 		091FEB19199C135100505B79 /* ASDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASDViewController.xib; sourceTree = "<group>"; };
-		091FEB1C199C149F00505B79 /* NSAttributedString+OHAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+OHAdditions.h"; sourceTree = "<group>"; };
-		091FEB1D199C149F00505B79 /* NSAttributedString+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+OHAdditions.m"; sourceTree = "<group>"; };
-		091FEB29199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+OHAdditions.h"; sourceTree = "<group>"; };
-		091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+OHAdditions.m"; sourceTree = "<group>"; };
-		091FEB2C199C224E00505B79 /* OHAttributedStringAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHAttributedStringAdditions.h; sourceTree = "<group>"; };
 		0925DAC0199C5AE6001D9F8B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		094443F0199F87B300324F4A /* UIFont+OHAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+OHAdditions.h"; sourceTree = "<group>"; };
-		094443F1199F87B300324F4A /* UIFont+OHAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OHAdditions.m"; sourceTree = "<group>"; };
 		094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSAttributedStringTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSMutableAttributedStringTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		09A971E919BCB4DA00F82C83 /* OHASATestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASATestHelper.h; sourceTree = "<group>"; };
 		09A971EA19BCB4DA00F82C83 /* OHASATestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHASATestHelper.m; sourceTree = "<group>"; };
+		261455E86C5BBA7C451F6B06 /* Pods-AttributedStringDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemo/Pods-AttributedStringDemo.release.xcconfig"; sourceTree = "<group>"; };
+		48842986E011607035CF900E /* libPods-AttributedStringDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributedStringDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributedStringDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B63939876FFC4706B89FB17A /* Pods-AttributedStringDemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemoTests.xcconfig"; path = "Pods/Pods-AttributedStringDemoTests.xcconfig"; sourceTree = "<group>"; };
+		D65FF14BA2684210F903240B /* Pods-AttributedStringDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemo/Pods-AttributedStringDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		DD070796B7F601FFE2611AD9 /* Pods-AttributedStringDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemoTests/Pods-AttributedStringDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +76,7 @@
 				091FEAE6199C11A600505B79 /* CoreGraphics.framework in Frameworks */,
 				091FEAE8199C11A600505B79 /* UIKit.framework in Frameworks */,
 				091FEAE4199C11A600505B79 /* Foundation.framework in Frameworks */,
+				A5190948151877D3E866AF5C /* libPods-AttributedStringDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,12 +99,11 @@
 			children = (
 				091FEB18199C12B300505B79 /* OHAttributedStringAdditions.podspec */,
 				0925DAC0199C5AE6001D9F8B /* README.md */,
-				091FEB1B199C147700505B79 /* Source */,
 				091FEAE9199C11A600505B79 /* Demo */,
 				091FEB08199C11A600505B79 /* Unit Tests */,
 				091FEAE2199C11A600505B79 /* Frameworks */,
 				091FEAE1199C11A600505B79 /* Products */,
-				B63939876FFC4706B89FB17A /* Pods-AttributedStringDemoTests.xcconfig */,
+				1A2AE2D26335DB6BA26A56AF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +124,7 @@
 				091FEAE7199C11A600505B79 /* UIKit.framework */,
 				091FEB02199C11A600505B79 /* XCTest.framework */,
 				6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */,
+				48842986E011607035CF900E /* libPods-AttributedStringDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,19 +176,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		091FEB1B199C147700505B79 /* Source */ = {
+		1A2AE2D26335DB6BA26A56AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				091FEB2C199C224E00505B79 /* OHAttributedStringAdditions.h */,
-				091FEB1C199C149F00505B79 /* NSAttributedString+OHAdditions.h */,
-				091FEB1D199C149F00505B79 /* NSAttributedString+OHAdditions.m */,
-				091FEB29199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.h */,
-				091FEB2A199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m */,
-				094443F0199F87B300324F4A /* UIFont+OHAdditions.h */,
-				094443F1199F87B300324F4A /* UIFont+OHAdditions.m */,
+				D65FF14BA2684210F903240B /* Pods-AttributedStringDemo.debug.xcconfig */,
+				261455E86C5BBA7C451F6B06 /* Pods-AttributedStringDemo.release.xcconfig */,
+				DD070796B7F601FFE2611AD9 /* Pods-AttributedStringDemoTests.debug.xcconfig */,
+				07D05AA7B4E2CEAA2CBF3370 /* Pods-AttributedStringDemoTests.release.xcconfig */,
 			);
-			name = Source;
-			path = ../Source;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,9 +194,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 091FEB12199C11A600505B79 /* Build configuration list for PBXNativeTarget "AttributedStringDemo" */;
 			buildPhases = (
+				4E65AE64CAA466E473C41799 /* Check Pods Manifest.lock */,
 				091FEADC199C11A600505B79 /* Sources */,
 				091FEADD199C11A600505B79 /* Frameworks */,
 				091FEADE199C11A600505B79 /* Resources */,
+				40D970C5C43146FF96AB7B21 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,6 +293,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		40D970C5C43146FF96AB7B21 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttributedStringDemo/Pods-AttributedStringDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E65AE64CAA466E473C41799 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		B9D0DE37C4E641EAAE684694 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,7 +335,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AttributedStringDemoTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttributedStringDemoTests/Pods-AttributedStringDemoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -324,10 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				091FEB2B199C14DB00505B79 /* NSMutableAttributedString+OHAdditions.m in Sources */,
-				091FEB25199C149F00505B79 /* NSAttributedString+OHAdditions.m in Sources */,
 				091FEAFA199C11A600505B79 /* ASDViewController.m in Sources */,
-				094443F2199F87B300324F4A /* UIFont+OHAdditions.m in Sources */,
 				091FEAF0199C11A600505B79 /* main.m in Sources */,
 				091FEAF4199C11A600505B79 /* ASDAppDelegate.m in Sources */,
 			);
@@ -337,11 +355,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				094443F3199FDF4F00324F4A /* NSAttributedString+OHAdditions.m in Sources */,
-				094443F5199FDF4F00324F4A /* UIFont+OHAdditions.m in Sources */,
 				09A971EC19BCB61300F82C83 /* OHASATestHelper.m in Sources */,
 				094443F7199FE3CF00324F4A /* NSAttributedStringTests.m in Sources */,
-				094443F4199FDF4F00324F4A /* NSMutableAttributedString+OHAdditions.m in Sources */,
 				094443F919A00D0000324F4A /* NSMutableAttributedStringTests.m in Sources */,
 				091FEB0F199C11A600505B79 /* UIFontTests.m in Sources */,
 			);
@@ -397,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -436,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -444,13 +459,13 @@
 		};
 		091FEB13199C11A600505B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D65FF14BA2684210F903240B /* Pods-AttributedStringDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "AttributedStringDemo/AttributedStringDemo-Prefix.pch";
 				INFOPLIST_FILE = "AttributedStringDemo/AttributedStringDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -458,13 +473,13 @@
 		};
 		091FEB14199C11A600505B79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 261455E86C5BBA7C451F6B06 /* Pods-AttributedStringDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "AttributedStringDemo/AttributedStringDemo-Prefix.pch";
 				INFOPLIST_FILE = "AttributedStringDemo/AttributedStringDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -472,7 +487,7 @@
 		};
 		091FEB16199C11A600505B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B63939876FFC4706B89FB17A /* Pods-AttributedStringDemoTests.xcconfig */;
+			baseConfigurationReference = DD070796B7F601FFE2611AD9 /* Pods-AttributedStringDemoTests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -493,7 +508,7 @@
 		};
 		091FEB17199C11A600505B79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B63939876FFC4706B89FB17A /* Pods-AttributedStringDemoTests.xcconfig */;
+			baseConfigurationReference = 07D05AA7B4E2CEAA2CBF3370 /* Pods-AttributedStringDemoTests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

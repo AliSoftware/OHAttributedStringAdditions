@@ -1,0 +1,7 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(SDKROOT)/Developer/Library/Frameworks" "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 XCODE_VERSION=$(XCODE_VERSION_MAJOR)
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/OHAttributedStringAdditions" "${PODS_ROOT}/Headers/Public/OHHTTPStubs"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/OHAttributedStringAdditions" -isystem "${PODS_ROOT}/Headers/Public/OHHTTPStubs"
+OTHER_LDFLAGS = -ObjC -l"Pods-AttributedStringDemoTests-OHAttributedStringAdditions" -l"Pods-AttributedStringDemoTests-OHHTTPStubs" -framework "CFNetwork" -framework "Foundation" -framework "XCTest"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_ROOT = ${SRCROOT}/Pods
