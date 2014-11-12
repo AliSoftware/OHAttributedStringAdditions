@@ -24,7 +24,7 @@
 - (void)test_fontWithFamily_size_bold_italic_02
 {
     UIFont* font = [UIFont fontWithFamily:@"Helvetica" size:42 bold:NO italic:YES];
-    XCTAssertEqualObjects(font.fontName, @"Helvetica Oblique");
+    XCTAssertEqualObjects(font.fontName, @"Helvetica-Oblique");
     XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"Helvetica-Oblique");
     XCTAssertEqual(font.pointSize, 42);
 }
@@ -32,7 +32,7 @@
 - (void)test_fontWithFamily_size_bold_italic_03
 {
     UIFont* font = [UIFont fontWithFamily:@"Helvetica" size:42 bold:YES italic:NO];
-    XCTAssertEqualObjects(font.fontName, @"Helvetica Bold");
+    XCTAssertEqualObjects(font.fontName, @"Helvetica-Bold");
     XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"Helvetica-Bold");
     XCTAssertEqual(font.pointSize, 42);
 }
@@ -40,7 +40,7 @@
 - (void)test_fontWithFamily_size_bold_italic_04
 {
     UIFont* font = [UIFont fontWithFamily:@"Helvetica" size:42 bold:YES italic:YES];
-    XCTAssertEqualObjects(font.fontName, @"Helvetica Bold Oblique");
+    XCTAssertEqualObjects(font.fontName, @"Helvetica-BoldOblique");
     XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"Helvetica-BoldOblique");
     XCTAssertEqual(font.pointSize, 42);
 }
@@ -57,7 +57,7 @@
 {
     UIFontDescriptorSymbolicTraits traits = UIFontDescriptorTraitCondensed | UIFontDescriptorTraitBold;
     UIFont* font = [UIFont fontWithFamily:@"Helvetica Neue" size:42 traits:traits];
-    XCTAssertEqualObjects(font.fontName, @"Helvetica Neue Condensed Bold");
+    XCTAssertEqualObjects(font.fontName, @"HelveticaNeue-CondensedBold");
     XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"HelveticaNeue-CondensedBold");
     XCTAssertEqual(font.pointSize, 42);
 }
@@ -66,7 +66,7 @@
 {
     UIFont* baseFont = [UIFont fontWithName:@"Helvetica Neue" size:42];
     UIFont* font = [baseFont fontWithSymbolicTraits:UIFontDescriptorTraitCondensed|UIFontDescriptorTraitBold];
-    XCTAssertEqualObjects(font.fontName, @"Helvetica Neue Condensed Bold");
+    XCTAssertEqualObjects(font.fontName, @"HelveticaNeue-CondensedBold");
     XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"HelveticaNeue-CondensedBold");
     XCTAssertEqual(font.pointSize, 42);
     
