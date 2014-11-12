@@ -12,4 +12,4 @@ before_install:
   - brew update
 
 script:
-  - xcodebuild -workspace Example/AttributedStringDemo.xcworkspace -scheme AttributedStringDemo -sdk iphonesimulator -configuration Release test | xcpretty -c ; exit ${PIPESTATUS[0]}")
+  - xcodebuild -workspace Example/AttributedStringDemo.xcworkspace -scheme AttributedStringDemo -sdk iphonesimulator -configuration Release test | xcpretty -c ; exit ${PIPESTATUS[0]}
