@@ -23,3 +23,11 @@ NSSet* attributesSetInString(NSAttributedString* str)
      }];
     return [NSSet setWithSet:set];
 }
+
+UIFont* fontWithPostscriptName(NSString* postscriptName, CGFloat size)
+{
+    NSDictionary* attributes = @{ UIFontDescriptorNameAttribute: postscriptName }; // UIFontDescriptorNameAttribute = Postscript name, should not change across iOS versions.
+    
+    UIFontDescriptor* desc = [UIFontDescriptor fontDescriptorWithFontAttributes:attributes];
+    return [UIFont fontWithDescriptor:desc size:size];
+}

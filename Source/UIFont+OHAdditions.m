@@ -11,9 +11,9 @@
 @implementation UIFont (OHAdditions)
 
 + (instancetype)fontWithFamily:(NSString*)fontFamily
-                  size:(CGFloat)size
-                  bold:(BOOL)isBold
-                italic:(BOOL)isItalic
+                          size:(CGFloat)size
+                          bold:(BOOL)isBold
+                        italic:(BOOL)isItalic
 {
     UIFontDescriptorSymbolicTraits traits = 0;
     if (isBold) traits |= UIFontDescriptorTraitBold;
@@ -23,19 +23,19 @@
 }
 
 + (instancetype)fontWithFamily:(NSString*)fontFamily
-                  size:(CGFloat)size
-                traits:(UIFontDescriptorSymbolicTraits)symTraits
+                          size:(CGFloat)size
+                        traits:(UIFontDescriptorSymbolicTraits)symTraits
 {
-	NSDictionary* attributes = @{ UIFontDescriptorFamilyAttribute: fontFamily,
+    NSDictionary* attributes = @{ UIFontDescriptorFamilyAttribute: fontFamily,
                                   UIFontDescriptorTraitsAttribute: @{UIFontSymbolicTrait:@(symTraits)}};
-	
+    
     UIFontDescriptor* desc = [UIFontDescriptor fontDescriptorWithFontAttributes:attributes];
     return [UIFont fontWithDescriptor:desc size:size];
 }
 
 - (instancetype)fontWithSymbolicTraits:(UIFontDescriptorSymbolicTraits)symTraits
 {
-	NSDictionary* attributes = @{UIFontDescriptorFamilyAttribute: self.familyName,
+    NSDictionary* attributes = @{UIFontDescriptorFamilyAttribute: self.familyName,
                                  UIFontDescriptorTraitsAttribute: @{UIFontSymbolicTrait:@(symTraits)}};
     UIFontDescriptor* desc = [UIFontDescriptor fontDescriptorWithFontAttributes:attributes];
     return [UIFont fontWithDescriptor:desc size:self.pointSize];

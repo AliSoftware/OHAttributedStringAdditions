@@ -274,7 +274,7 @@
     [str setFontBold:NO range:NSMakeRange(4, 2)];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontNoBold = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    UIFont* fontNoBold = fontWithPostscriptName(@"HelveticaNeue", 42);
     NSSet* expectedAttributes = [NSSet setWithObjects:
                                  @[@0,@4,@{NSFontAttributeName:font}],
                                  @[@4,@2,@{NSFontAttributeName:fontNoBold}],
@@ -287,12 +287,12 @@
 - (void)test_setFontItalics_NO
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    UIFont* font = fontWithPostscriptName(@"HelveticaNeue", 42);
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontItalics:YES];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontItalic = [UIFont fontWithName:@"HelveticaNeue-Italic" size:42];
+    UIFont* fontItalic = fontWithPostscriptName(@"HelveticaNeue-Italic", 42);
     NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontItalic}] ];
     
     XCTAssertEqualObjects(attr, expectedAttributes);

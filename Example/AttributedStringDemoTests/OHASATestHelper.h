@@ -13,3 +13,4 @@
 @end
 
 NSSet* attributesSetInString(NSAttributedString* str);
+UIFont* fontWithPostscriptName(NSString* postscriptName, CGFloat size);

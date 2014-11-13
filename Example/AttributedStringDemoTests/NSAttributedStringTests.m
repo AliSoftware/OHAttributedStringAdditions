@@ -73,7 +73,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     paraStyle.baseWritingDirection = NSWritingDirectionLeftToRight;
     
     NSDictionary* commonAttr = @{ NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:0 blue:0 alpha:1],
-                                  NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:12],
+                                  NSFontAttributeName: fontWithPostscriptName(@"Helvetica", 12),
                                   NSKernAttributeName: @0,
                                   NSParagraphStyleAttributeName: paraStyle,
                                   NSStrokeColorAttributeName: [UIColor colorWithRed:0 green:0 blue:0 alpha:1],
@@ -86,7 +86,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     XCTAssertTrue(([attrs containsObject:attr_0_6]));
     
     NSMutableDictionary* boldAttr = [NSMutableDictionary dictionaryWithDictionary:commonAttr];
-    [boldAttr setObject:[UIFont fontWithName:@"Helvetica-Bold" size:12] forKey:NSFontAttributeName];
+    [boldAttr setObject:fontWithPostscriptName(@"Helvetica-Bold", 12) forKey:NSFontAttributeName];
     NSArray* attr_6_11 = @[ @6 , @5 , boldAttr ];
     XCTAssertTrue(([attrs containsObject:attr_6_11]));
     
@@ -94,7 +94,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     XCTAssertTrue(([attrs containsObject:attr_11_13]));
     
     NSMutableDictionary* italicAttr = [NSMutableDictionary dictionaryWithDictionary:commonAttr];
-    [italicAttr setObject:[UIFont fontWithName:@"Helvetica-Oblique" size:12] forKey:NSFontAttributeName];
+    [italicAttr setObject:fontWithPostscriptName(@"Helvetica-Oblique", 12) forKey:NSFontAttributeName];
     NSArray* attr_13_17 = @[ @13 , @4 , italicAttr ];
     XCTAssertTrue(([attrs containsObject:attr_13_17]));
     
@@ -102,7 +102,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
     XCTAssertTrue(([attrs containsObject:attr_17_28]));
     
     NSMutableDictionary* teletextAttr = [NSMutableDictionary dictionaryWithDictionary:commonAttr];
-    [teletextAttr setObject:[UIFont fontWithName:@"Courier" size:12] forKey:NSFontAttributeName];
+    [teletextAttr setObject:fontWithPostscriptName(@"Courier", 12) forKey:NSFontAttributeName];
     NSArray* attr_28_32 = @[ @28 , @4 , teletextAttr ];
     XCTAssertTrue(([attrs containsObject:attr_28_32]));
     
@@ -237,8 +237,8 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 
 - (void)test_fontAtIndex_effectiveRange
 {
-    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
-    UIFont* font2 = [UIFont fontWithName:@"Courier" size:24];
+    UIFont* font1 = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* font2 = fontWithPostscriptName(@"Courier", 24);
     [self runTestWithAttribute:NSFontAttributeName
                         value1:font1 value2:font2
                      testBlock:^id(NSAttributedString *str, NSUInteger idx, NSRangePointer rangePtr)
@@ -250,9 +250,9 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 - (void)test_enumerateFontsInRange_includeUndefined_usingBlock_01
 {
     NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
-    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    UIFont* font1 = fontWithPostscriptName(@"HelveticaNeue", 42);
     [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, str.length)];
-    UIFont* font2 = [UIFont fontWithName:@"Courier" size:24];
+    UIFont* font2 = fontWithPostscriptName(@"Courier", 24);
     [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
 
     NSMutableArray* stack = [NSMutableArray array];
@@ -272,9 +272,9 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 - (void)test_enumerateFontsInRange_includeUndefined_usingBlock_02
 {
     NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
-    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    UIFont* font1 = fontWithPostscriptName(@"HelveticaNeue", 42);
     [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, str.length)];
-    UIFont* font2 = [UIFont fontWithName:@"Courier" size:24];
+    UIFont* font2 = fontWithPostscriptName(@"Courier", 24);
     [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
     
     NSMutableArray* stack = [NSMutableArray array];
@@ -293,7 +293,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 - (void)test_enumerateFontsInRange_includeUndefined_usingBlock_03
 {
     NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
-    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    UIFont* font1 = fontWithPostscriptName(@"HelveticaNeue", 42);
     [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(4, 2)];
     
     NSMutableArray* stack = [NSMutableArray array];
@@ -311,7 +311,7 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 - (void)test_enumerateFontsInRange_includeUndefined_usingBlock_04
 {
     NSMutableAttributedString* str = [NSMutableAttributedString attributedStringWithString:@"Hello World"];
-    UIFont* font1 = [UIFont fontWithName:@"HelveticaNeue" size:42];
+    UIFont* font1 = fontWithPostscriptName(@"HelveticaNeue", 42);
     [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(4, 2)];
     
     NSMutableArray* stack = [NSMutableArray array];
@@ -412,8 +412,8 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 
 - (void)test_isFontBoldAtIndex_effectiveRange
 {
-    UIFont* font1 = [UIFont fontWithName:@"Helvetica" size:12];
-    UIFont* font2 = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:12];
+    UIFont* font1 = fontWithPostscriptName(@"Helvetica", 12);
+    UIFont* font2 = fontWithPostscriptName(@"HelveticaNeue-CondensedBold", 12);
     [self runTestWithAttribute:NSFontAttributeName
                         value1:font1 value2:font2
                   expectation1:@NO expectation2:@YES
@@ -425,8 +425,8 @@ void assertHTMLAttributes(XCTestCase* self, NSAttributedString* str)
 
 - (void)test_isFontItalicsAtIndex_effectiveRange
 {
-    UIFont* font1 = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-    UIFont* font2 = [UIFont fontWithName:@"Helvetica-Oblique" size:12];
+    UIFont* font1 = fontWithPostscriptName(@"Helvetica-Bold", 12);
+    UIFont* font2 = fontWithPostscriptName(@"Helvetica-Oblique", 12);
     [self runTestWithAttribute:NSFontAttributeName
                         value1:font1 value2:font2
                   expectation1:@NO expectation2:@YES

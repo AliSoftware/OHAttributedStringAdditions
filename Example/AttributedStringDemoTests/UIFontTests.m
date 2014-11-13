@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "UIFont+OHAdditions.h"
+#import "OHASATestHelper.h"
 
 @interface UIFontTests : XCTestCase @end
 
@@ -64,7 +65,7 @@
 
 - (void)test_fontWithSymbolicTraits
 {
-    UIFont* baseFont = [UIFont fontWithName:@"Helvetica Neue" size:42];
+    UIFont* baseFont = fontWithPostscriptName(@"Helvetica Neue", 42);
     UIFont* font = [baseFont fontWithSymbolicTraits:UIFontDescriptorTraitCondensed|UIFontDescriptorTraitBold];
     XCTAssertEqualObjects(font.fontName, @"Helvetica Neue Condensed Bold");
     XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"HelveticaNeue-CondensedBold");
@@ -74,7 +75,7 @@
 
 - (void)test_symbolicTraits
 {
-    UIFont* font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:42];
+    UIFont* font = fontWithPostscriptName(@"HelveticaNeue-CondensedBold", 42);
     XCTAssertEqual(font.symbolicTraits, UIFontDescriptorTraitCondensed|UIFontDescriptorTraitBold);
 }
 
