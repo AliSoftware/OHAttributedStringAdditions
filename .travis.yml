@@ -1,15 +1,8 @@
 language: objective-c
 
-#xcode_workspace: Example/AttributedStringDemo.xcworkspace
-#xcode_scheme: AttributedStringDemo
-#xcode_sdk: iphonesimulator7.1
-
-# script:
-#    - xctool -workspace Example/AttributedStringDemo.xcworkspace -scheme "AttributedStringDemo" -configuration Release -sdk iphonesimulator test
-
 before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-  - brew update
 
 script:
   - xcodebuild -workspace Example/AttributedStringDemo.xcworkspace -scheme AttributedStringDemo -sdk iphonesimulator -configuration Release test | xcpretty -c ; exit ${PIPESTATUS[0]}
+
