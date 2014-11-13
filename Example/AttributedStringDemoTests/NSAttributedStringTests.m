@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSAttributedString+OHAdditions.h"
+#import <OHAttributedStringAdditions/NSAttributedString+OHAdditions.h>
 
 #import <OHHTTPStubs/XCTestExpectation+OHRetroCompat.h>
 #import "OHASATestHelper.h"

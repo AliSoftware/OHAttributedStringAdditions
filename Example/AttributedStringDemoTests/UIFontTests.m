@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "UIFont+OHAdditions.h"
+#import <OHAttributedStringAdditions/UIFont+OHAdditions.h>
 #import "OHASATestHelper.h"
 
 @interface UIFontTests : XCTestCase @end

@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSMutableAttributedString+OHAdditions.h"
+#import <OHAttributedStringAdditions/NSMutableAttributedString+OHAdditions.h>
 
 #import "OHASATestHelper.h"
 

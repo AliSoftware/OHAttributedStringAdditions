@@ -8,7 +8,7 @@
 
 #import "ASDViewController.h"
 
-#import "OHAttributedStringAdditions.h"
+#import <OHAttributedStringAdditions/OHAttributedStringAdditions.h>
 
 @interface ASDViewController () <UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITextView* textView;
