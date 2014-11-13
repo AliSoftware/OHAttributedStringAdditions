@@ -38,13 +38,10 @@ A demo project is provided in the repository. Don't hesitate to open `Example/At
 
 ## Future improvements
 
-This pod is in its early release. A lot of improvements are already planned to be released soon:
-
-* Adding **Unit Tests for methods of the `NSMutableAttributedString`** category (for now UnitTests exists for the `UIFont` and `NSAttributedString` category only)
 * Improving **documentation on edge cases**, like documenting the behavior about when some attribute is not present or if we are allowed to pass nil to arguments.
-* Adding **support for OSX**. This should only need little adjustments, like getting rid of the `#import <UIKit/UIKit.h>` in the pch file, or replacing `UIColor` and `UIFont` classes with `NSColor` and `NSFont` (using macros to switch from one to another depending on the SDK), but that still requires some work.
+* Adding **support for OSX**. This should only need little adjustments, like getting rid of the `#import <UIKit/UIKit.h>` in the pch file, or replacing `UIColor` and `UIFont` classes with `NSColor` and `NSFont` (using macros to switch from one to another depending on the SDK), but that still requires some work and tests.
 
-> _Note: The original code of these categories comes from my old `OHAttributedLabel` pod, which is now deprecated as I don't have time to maintain it. But as those categories were still useful I extracted them in a dedicated pod and converted them to create UIKit-complient `NSAttributedString`, not related to CoreText anymore._
+> _Note: The original code of these categories comes from my old `OHAttributedLabel` pod, which is now deprecated as I don't have time to maintain it. As this previous implementation was based on CoreText and was not compatible (sometimes even crash) with UIKit/TextKit, I converted those categories to create this UIKit-compliant `NSAttributedString`, not related to CoreText and `OHAttributedLabel` anymore and that now work with latest versions of iOS/UIKit/TextKit._
 
 ## Licence
 
