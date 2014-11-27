@@ -34,6 +34,14 @@
     XCTAssertEqual(attributesSetInString(str).count, 0U);
 }
 
+- (void)test_attributedStringWithFormat
+{
+    NSAttributedString* str = [NSAttributedString attributedStringWithFormat:@"Foo-%@-%d-%.2f",@"Bar",42,1.234];
+    XCTAssertNotNil(str);
+    XCTAssertEqualObjects(str.string, @"Foo-Bar-42-1.23");
+    XCTAssertEqual(attributesSetInString(str).count, 0U);
+}
+
 - (void)test_attributedStringWithAttributedString
 {
     NSMutableAttributedString* base = [[NSMutableAttributedString alloc] initWithString:@"Hello, World"];

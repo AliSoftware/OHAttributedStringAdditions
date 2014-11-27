@@ -47,6 +47,20 @@
  */
 + (instancetype)attributedStringWithString:(NSString*)string;
 
+
+/**
+ *  Build an NSAttributedString from a format and arguments, (like `stringWithFormat:`)
+ *
+ *  @param format The format to build the attributed string from. You can use every
+ *                placeholder that you usually use in `-[NSString stringWithFormat:]`
+ *
+ *  @return A new attributed string with the formatted string and default attributes
+ *
+ *  @note This is a convenience method that calls `-[NSAttributedString initWithString:]`
+ *        with its parameter build from `-[NSString stringWithFormat:]`.
+ */
++ (instancetype)attributedStringWithFormat:(NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
+
 /**
  *  Build an NSAttributedString from another NSAttributedString
  *

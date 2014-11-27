@@ -44,6 +44,15 @@
     }
 }
 
++ (instancetype)attributedStringWithFormat:(NSString*)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    NSString* string = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    return [[self alloc] initWithString:string];
+}
+
 + (instancetype)attributedStringWithAttributedString:(NSAttributedString*)attrStr
 {
     if (attrStr)
