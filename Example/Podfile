@@ -1,12 +1,5 @@
 xcodeproj 'AttributedStringDemo.xcodeproj'
 platform :ios, "7.0"
 
-target "AttributedStringDemo" do
-    pod 'OHAttributedStringAdditions', :path => '../'
-end
-
-target "AttributedStringDemoTests" do
-  pod 'OHAttributedStringAdditions', :path => '../'
-  pod 'OHHTTPStubs/XCTestExpectation'
-end
-
+link_with 'AttributedStringDemo', 'UnitTests'
+pod 'OHAttributedStringAdditions', :path => '..'

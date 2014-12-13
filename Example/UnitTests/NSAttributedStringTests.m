@@ -10,7 +10,6 @@
 #import <OHAttributedStringAdditions/NSAttributedString+OHAdditions.h>
 #import <OHAttributedStringAdditions/UIFont+OHAdditions.h>
 
-#import <OHHTTPStubs/XCTestExpectation+OHRetroCompat.h>
 #import "OHASATestHelper.h"
 
 @interface NSAttributedStringTests : XCTestCase @end

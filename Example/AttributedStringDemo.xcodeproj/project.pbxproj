@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05DB335C13C16470804021DF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1104688BD199A34CE48E58F4 /* libPods.a */; };
 		091FEAE4199C11A600505B79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091FEAE3199C11A600505B79 /* Foundation.framework */; };
 		091FEAE6199C11A600505B79 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091FEAE5199C11A600505B79 /* CoreGraphics.framework */; };
 		091FEAE8199C11A600505B79 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091FEAE7199C11A600505B79 /* UIKit.framework */; };
@@ -22,8 +23,7 @@
 		094443F7199FE3CF00324F4A /* NSAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F6199FE3CF00324F4A /* NSAttributedStringTests.m */; };
 		094443F919A00D0000324F4A /* NSMutableAttributedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */; };
 		09A971EC19BCB61300F82C83 /* OHASATestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A971EA19BCB4DA00F82C83 /* OHASATestHelper.m */; };
-		4250C3DB3E24455D816021D6 /* libPods-AttributedStringDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */; };
-		A5190948151877D3E866AF5C /* libPods-AttributedStringDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48842986E011607035CF900E /* libPods-AttributedStringDemo.a */; };
+		6FEDFA659CBB92234B74D1B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1104688BD199A34CE48E58F4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07D05AA7B4E2CEAA2CBF3370 /* Pods-AttributedStringDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemoTests/Pods-AttributedStringDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		091DC22A1A3C90DF009A6103 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		091DC22B1A3C90DF009A6103 /* Pods.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		091FEAE0199C11A600505B79 /* AttributedStringDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AttributedStringDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		091FEAE3199C11A600505B79 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		091FEAE5199C11A600505B79 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -50,9 +51,9 @@
 		091FEAF8199C11A600505B79 /* ASDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASDViewController.h; sourceTree = "<group>"; };
 		091FEAF9199C11A600505B79 /* ASDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASDViewController.m; sourceTree = "<group>"; };
 		091FEAFB199C11A600505B79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		091FEB01199C11A600505B79 /* AttributedStringDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttributedStringDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		091FEB01199C11A600505B79 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		091FEB02199C11A600505B79 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		091FEB0A199C11A600505B79 /* AttributedStringDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AttributedStringDemoTests-Info.plist"; sourceTree = "<group>"; };
+		091FEB0A199C11A600505B79 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		091FEB0E199C11A600505B79 /* UIFontTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIFontTests.m; sourceTree = "<group>"; };
 		091FEB18199C12B300505B79 /* OHAttributedStringAdditions.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = OHAttributedStringAdditions.podspec; path = ../OHAttributedStringAdditions.podspec; sourceTree = "<group>"; };
 		091FEB19199C135100505B79 /* ASDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASDViewController.xib; sourceTree = "<group>"; };
@@ -61,11 +62,10 @@
 		094443F819A00D0000324F4A /* NSMutableAttributedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSMutableAttributedStringTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		09A971E919BCB4DA00F82C83 /* OHASATestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHASATestHelper.h; sourceTree = "<group>"; };
 		09A971EA19BCB4DA00F82C83 /* OHASATestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHASATestHelper.m; sourceTree = "<group>"; };
-		261455E86C5BBA7C451F6B06 /* Pods-AttributedStringDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemo/Pods-AttributedStringDemo.release.xcconfig"; sourceTree = "<group>"; };
+		0C4F6E012205CD8A335CB820 /* libPods-UnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1104688BD199A34CE48E58F4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48842986E011607035CF900E /* libPods-AttributedStringDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributedStringDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AttributedStringDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D65FF14BA2684210F903240B /* Pods-AttributedStringDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemo/Pods-AttributedStringDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		DD070796B7F601FFE2611AD9 /* Pods-AttributedStringDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttributedStringDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AttributedStringDemoTests/Pods-AttributedStringDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 				091FEAE6199C11A600505B79 /* CoreGraphics.framework in Frameworks */,
 				091FEAE8199C11A600505B79 /* UIKit.framework in Frameworks */,
 				091FEAE4199C11A600505B79 /* Foundation.framework in Frameworks */,
-				A5190948151877D3E866AF5C /* libPods-AttributedStringDemo.a in Frameworks */,
+				6FEDFA659CBB92234B74D1B0 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +87,7 @@
 				091FEB03199C11A600505B79 /* XCTest.framework in Frameworks */,
 				091FEB05199C11A600505B79 /* UIKit.framework in Frameworks */,
 				091FEB04199C11A600505B79 /* Foundation.framework in Frameworks */,
-				4250C3DB3E24455D816021D6 /* libPods-AttributedStringDemoTests.a in Frameworks */,
+				05DB335C13C16470804021DF /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				091FEAE0199C11A600505B79 /* AttributedStringDemo.app */,
-				091FEB01199C11A600505B79 /* AttributedStringDemoTests.xctest */,
+				091FEB01199C11A600505B79 /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +125,8 @@
 				091FEB02199C11A600505B79 /* XCTest.framework */,
 				6FF2008EC8614D5D8BD46C84 /* libPods-AttributedStringDemoTests.a */,
 				48842986E011607035CF900E /* libPods-AttributedStringDemo.a */,
+				1104688BD199A34CE48E58F4 /* libPods.a */,
+				0C4F6E012205CD8A335CB820 /* libPods-UnitTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,13 +167,13 @@
 				091FEB09199C11A600505B79 /* Supporting Files */,
 			);
 			name = "Unit Tests";
-			path = AttributedStringDemoTests;
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
 		091FEB09199C11A600505B79 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				091FEB0A199C11A600505B79 /* AttributedStringDemoTests-Info.plist */,
+				091FEB0A199C11A600505B79 /* UnitTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -179,10 +181,8 @@
 		1A2AE2D26335DB6BA26A56AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D65FF14BA2684210F903240B /* Pods-AttributedStringDemo.debug.xcconfig */,
-				261455E86C5BBA7C451F6B06 /* Pods-AttributedStringDemo.release.xcconfig */,
-				DD070796B7F601FFE2611AD9 /* Pods-AttributedStringDemoTests.debug.xcconfig */,
-				07D05AA7B4E2CEAA2CBF3370 /* Pods-AttributedStringDemoTests.release.xcconfig */,
+				091DC22A1A3C90DF009A6103 /* Pods.debug.xcconfig */,
+				091DC22B1A3C90DF009A6103 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -209,9 +209,9 @@
 			productReference = 091FEAE0199C11A600505B79 /* AttributedStringDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		091FEB00199C11A600505B79 /* AttributedStringDemoTests */ = {
+		091FEB00199C11A600505B79 /* UnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 091FEB15199C11A600505B79 /* Build configuration list for PBXNativeTarget "AttributedStringDemoTests" */;
+			buildConfigurationList = 091FEB15199C11A600505B79 /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
 				27D36005FBBD45BAB094582C /* Check Pods Manifest.lock */,
 				091FEAFD199C11A600505B79 /* Sources */,
@@ -224,9 +224,9 @@
 			dependencies = (
 				091FEB07199C11A600505B79 /* PBXTargetDependency */,
 			);
-			name = AttributedStringDemoTests;
+			name = UnitTests;
 			productName = AttributedStringDemoTests;
-			productReference = 091FEB01199C11A600505B79 /* AttributedStringDemoTests.xctest */;
+			productReference = 091FEB01199C11A600505B79 /* UnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -236,7 +236,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ASD;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = AliSoftware;
 			};
 			buildConfigurationList = 091FEADB199C11A600505B79 /* Build configuration list for PBXProject "AttributedStringDemo" */;
@@ -253,7 +253,7 @@
 			projectRoot = "";
 			targets = (
 				091FEADF199C11A600505B79 /* AttributedStringDemo */,
-				091FEB00199C11A600505B79 /* AttributedStringDemoTests */,
+				091FEB00199C11A600505B79 /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -305,7 +305,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttributedStringDemo/Pods-AttributedStringDemo-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4E65AE64CAA466E473C41799 /* Check Pods Manifest.lock */ = {
@@ -335,7 +335,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AttributedStringDemoTests/Pods-AttributedStringDemoTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -459,7 +459,7 @@
 		};
 		091FEB13199C11A600505B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D65FF14BA2684210F903240B /* Pods-AttributedStringDemo.debug.xcconfig */;
+			baseConfigurationReference = 091DC22A1A3C90DF009A6103 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -473,7 +473,7 @@
 		};
 		091FEB14199C11A600505B79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 261455E86C5BBA7C451F6B06 /* Pods-AttributedStringDemo.release.xcconfig */;
+			baseConfigurationReference = 091DC22B1A3C90DF009A6103 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -487,7 +487,7 @@
 		};
 		091FEB16199C11A600505B79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD070796B7F601FFE2611AD9 /* Pods-AttributedStringDemoTests.debug.xcconfig */;
+			baseConfigurationReference = 091DC22A1A3C90DF009A6103 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -495,12 +495,11 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AttributedStringDemo/AttributedStringDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "AttributedStringDemoTests/AttributedStringDemoTests-Info.plist";
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -508,7 +507,7 @@
 		};
 		091FEB17199C11A600505B79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07D05AA7B4E2CEAA2CBF3370 /* Pods-AttributedStringDemoTests.release.xcconfig */;
+			baseConfigurationReference = 091DC22B1A3C90DF009A6103 /* Pods.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -516,8 +515,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AttributedStringDemo/AttributedStringDemo-Prefix.pch";
-				INFOPLIST_FILE = "AttributedStringDemoTests/AttributedStringDemoTests-Info.plist";
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -544,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		091FEB15199C11A600505B79 /* Build configuration list for PBXNativeTarget "AttributedStringDemoTests" */ = {
+		091FEB15199C11A600505B79 /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				091FEB16199C11A600505B79 /* Debug */,

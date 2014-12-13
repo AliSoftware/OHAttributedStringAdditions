@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "OHAttributedStringAdditions"
-  s.version      = "1.1.0"
+  s.version      = "1.2.0"
   s.summary      = "Categories on NSAttributedString to add a lot of very useful convenience methods."
 
   s.description  = <<-DESC.gsub(/^.*\|/,'')
