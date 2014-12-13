@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <OHAttributedStringAdditions/NSMutableAttributedString+OHAdditions.h>
+#import <OHAttributedStringAdditions/UIFont+OHAdditions.h>
 
 #import "OHASATestHelper.h"
 
@@ -21,7 +22,7 @@
 - (void)test_setFont
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"Courier", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"Courier" size:42];
     [str setFont:font];
     
     NSSet* attr = attributesSetInString(str);
@@ -33,7 +34,7 @@
 - (void)test_setFont_range
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"Courier", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"Courier" size:42];
     [str setFont:font range:NSMakeRange(4,2)];
     
     NSSet* attr = attributesSetInString(str);
@@ -171,9 +172,9 @@
 - (void)test_changeFontTraitsWithBlock
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font1 = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* font1 = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, 11)];
-    UIFont* font2 = fontWithPostscriptName(@"Courier", 19);
+    UIFont* font2 = [UIFont fontWithPostscriptName:@"Courier" size:19];
     [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
     
     [str changeFontTraitsWithBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits, NSRange _) {
@@ -182,8 +183,8 @@
     
     NSSet* attr = attributesSetInString(str);
     
-    UIFont* font1Bold = fontWithPostscriptName(@"HelveticaNeue-Bold", 42);
-    UIFont* font2Bold = fontWithPostscriptName(@"Courier-Bold", 19);
+    UIFont* font1Bold = [UIFont fontWithPostscriptName:@"HelveticaNeue-Bold" size:42];
+    UIFont* font2Bold = [UIFont fontWithPostscriptName:@"Courier-Bold" size:19];
     NSSet* expectedAttributes = [NSSet setWithObjects:
                                  @[@0,@4,@{NSFontAttributeName:font1Bold}],
                                  @[@4,@2,@{NSFontAttributeName:font2Bold}],
@@ -196,9 +197,9 @@
 - (void)test_changeFontTraitsInRange_withBlock
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font1 = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* font1 = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     [str addAttribute:NSFontAttributeName value:font1 range:NSMakeRange(0, 11)];
-    UIFont* font2 = fontWithPostscriptName(@"Courier", 19);
+    UIFont* font2 = [UIFont fontWithPostscriptName:@"Courier" size:19];
     [str addAttribute:NSFontAttributeName value:font2 range:NSMakeRange(4, 2)];
     
     [str changeFontTraitsInRange:NSMakeRange(5, 3) withBlock:^UIFontDescriptorSymbolicTraits(UIFontDescriptorSymbolicTraits currentTraits, NSRange _) {
@@ -207,8 +208,8 @@
     
     NSSet* attr = attributesSetInString(str);
 
-    UIFont* font1Bold = fontWithPostscriptName(@"HelveticaNeue-Bold", 42);
-    UIFont* font2Bold = fontWithPostscriptName(@"Courier-Bold", 19);
+    UIFont* font1Bold = [UIFont fontWithPostscriptName:@"HelveticaNeue-Bold" size:42];
+    UIFont* font2Bold = [UIFont fontWithPostscriptName:@"Courier-Bold" size:19];
     NSSet* expectedAttributes = [NSSet setWithObjects:
                                  @[@0,@4,@{NSFontAttributeName:font1}],
                                  @[@4,@1,@{NSFontAttributeName:font2}],
@@ -223,12 +224,12 @@
 - (void)test_setFontBold_YES
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontBold:YES];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontBold = fontWithPostscriptName(@"HelveticaNeue-Bold", 42);
+    UIFont* fontBold = [UIFont fontWithPostscriptName:@"HelveticaNeue-Bold" size:42];
     NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontBold}] ];
     
     XCTAssertEqualObjects(attr, expectedAttributes);
@@ -237,12 +238,12 @@
 - (void)test_setFontBold_NO
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue-Bold", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue-Bold" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontBold:NO];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontNoBold = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* fontNoBold = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontNoBold}] ];
     
     XCTAssertEqualObjects(attr, expectedAttributes);
@@ -251,12 +252,12 @@
 - (void)test_setFontBold_range_YES
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontBold:YES range:NSMakeRange(4, 2)];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontBold = fontWithPostscriptName(@"HelveticaNeue-Bold", 42);
+    UIFont* fontBold = [UIFont fontWithPostscriptName:@"HelveticaNeue-Bold" size:42];
     NSSet* expectedAttributes = [NSSet setWithObjects:
                                  @[@0,@4,@{NSFontAttributeName:font}],
                                  @[@4,@2,@{NSFontAttributeName:fontBold}],
@@ -269,12 +270,12 @@
 - (void)test_setFontBold_range_NO
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue-Bold", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue-Bold" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontBold:NO range:NSMakeRange(4, 2)];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontNoBold = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* fontNoBold = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     NSSet* expectedAttributes = [NSSet setWithObjects:
                                  @[@0,@4,@{NSFontAttributeName:font}],
                                  @[@4,@2,@{NSFontAttributeName:fontNoBold}],
@@ -287,12 +288,12 @@
 - (void)test_setFontItalics_NO
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontItalics:YES];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontItalic = fontWithPostscriptName(@"HelveticaNeue-Italic", 42);
+    UIFont* fontItalic = [UIFont fontWithPostscriptName:@"HelveticaNeue-Italic" size:42];
     NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontItalic}] ];
     
     XCTAssertEqualObjects(attr, expectedAttributes);
@@ -301,12 +302,12 @@
 - (void)test_setFontItalics_YES
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue-Italic", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue-Italic" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontItalics:NO];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontNoItalic = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* fontNoItalic = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     NSSet* expectedAttributes = [NSSet setWithObject: @[@0,@11,@{NSFontAttributeName:fontNoItalic}] ];
     
     XCTAssertEqualObjects(attr, expectedAttributes);
@@ -315,12 +316,12 @@
 - (void)test_setFontItalics_range_YES
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontItalics:YES range:NSMakeRange(4, 2)];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontItalic = fontWithPostscriptName(@"HelveticaNeue-Italic", 42);
+    UIFont* fontItalic = [UIFont fontWithPostscriptName:@"HelveticaNeue-Italic" size:42];
     NSSet* expectedAttributes = [NSSet setWithObjects:
                                  @[@0,@4,@{NSFontAttributeName:font}],
                                  @[@4,@2,@{NSFontAttributeName:fontItalic}],
@@ -333,12 +334,12 @@
 - (void)test_setFontItalics_range_NO
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue-Italic", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue-Italic" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setFontItalics:NO range:NSMakeRange(4, 2)];
     
     NSSet* attr = attributesSetInString(str);
-    UIFont* fontNoItalic = fontWithPostscriptName(@"HelveticaNeue", 42);
+    UIFont* fontNoItalic = [UIFont fontWithPostscriptName:@"HelveticaNeue" size:42];
     NSSet* expectedAttributes = [NSSet setWithObjects:
                                  @[@0,@4,@{NSFontAttributeName:font}],
                                  @[@4,@2,@{NSFontAttributeName:fontNoItalic}],
@@ -416,7 +417,7 @@
 - (void)test_setSuperscriptForRange
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"Helvetica", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"Helvetica" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setSuperscriptForRange:NSMakeRange(4, 2)];
     
@@ -433,7 +434,7 @@
 - (void)test_setSubscriptForRange
 {
     NSMutableAttributedString* str = [[NSMutableAttributedString alloc] initWithString:@"Hello world"];
-    UIFont* font = fontWithPostscriptName(@"Helvetica", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"Helvetica" size:42];
     [str addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, 11)];
     [str setSubscriptForRange:NSMakeRange(4, 2)];
     

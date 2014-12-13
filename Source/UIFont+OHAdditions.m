@@ -33,6 +33,15 @@
     return [UIFont fontWithDescriptor:desc size:size];
 }
 
++ (instancetype)fontWithPostscriptName:(NSString*)postscriptName size:(CGFloat)size
+{
+    // UIFontDescriptorNameAttribute = Postscript name, should not change across iOS versions.
+    NSDictionary* attributes = @{ UIFontDescriptorNameAttribute: postscriptName };
+    
+    UIFontDescriptor* desc = [UIFontDescriptor fontDescriptorWithFontAttributes:attributes];
+    return [UIFont fontWithDescriptor:desc size:size];
+}
+
 - (instancetype)fontWithSymbolicTraits:(UIFontDescriptorSymbolicTraits)symTraits
 {
     NSDictionary* attributes = @{UIFontDescriptorFamilyAttribute: self.familyName,

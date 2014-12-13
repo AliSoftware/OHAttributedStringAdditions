@@ -57,9 +57,16 @@
     XCTAssertEqual(font.pointSize, 42);
 }
 
+- (void)test_fontWithPostscriptName_size
+{
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue-Bold" size:37];
+    XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"HelveticaNeue-Bold");
+    XCTAssertEqual(font.pointSize, 37);
+}
+
 - (void)test_fontWithSymbolicTraits
 {
-    UIFont* baseFont = fontWithPostscriptName(@"Helvetica Neue", 42);
+    UIFont* baseFont = [UIFont fontWithPostscriptName:@"Helvetica Neue" size:42];
     UIFont* font = [baseFont fontWithSymbolicTraits:UIFontDescriptorTraitCondensed|UIFontDescriptorTraitBold];
     XCTAssertEqualObjects(font.fontDescriptor.postscriptName, @"HelveticaNeue-CondensedBold");
     XCTAssertEqual(font.pointSize, 42);
@@ -68,7 +75,7 @@
 
 - (void)test_symbolicTraits
 {
-    UIFont* font = fontWithPostscriptName(@"HelveticaNeue-CondensedBold", 42);
+    UIFont* font = [UIFont fontWithPostscriptName:@"HelveticaNeue-CondensedBold" size:42];
     XCTAssertEqual(font.symbolicTraits, UIFontDescriptorTraitCondensed|UIFontDescriptorTraitBold);
 }
 

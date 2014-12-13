@@ -68,6 +68,20 @@
                         traits:(UIFontDescriptorSymbolicTraits)symTraits;
 
 /**
+ *  Returns a font given its Postscript Name and size
+ *
+ *  @note Font PostScript names are unlikely to change across OS versions
+ *  (whereas it seems like common, display names may change)
+ *
+ *  @param postscriptName The PostScript name of the font
+ *  @param size           The size of the font
+ *
+ *  @return The UIFont object with the specified PS name and size.
+ */
++ (instancetype)fontWithPostscriptName:(NSString*)postscriptName
+                                  size:(CGFloat)size;
+
+/**
  *  Returns a font with the same family name, size and attributs as the
  *  receiver, but with the new symbolic  traits replacing the current ones
  *
