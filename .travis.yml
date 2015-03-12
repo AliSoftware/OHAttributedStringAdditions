@@ -4,5 +4,5 @@ before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 
 script:
-  - xcodebuild -workspace Example/AttributedStringDemo.xcworkspace -scheme AttributedStringDemo -sdk iphonesimulator -configuration Release test | xcpretty -c ; exit ${PIPESTATUS[0]}
+  - xcodebuild -workspace Example/AttributedStringDemo.xcworkspace -scheme AttributedStringDemo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 5S,OS=latest' -configuration Release test | xcpretty -c ; exit ${PIPESTATUS[0]}
 
