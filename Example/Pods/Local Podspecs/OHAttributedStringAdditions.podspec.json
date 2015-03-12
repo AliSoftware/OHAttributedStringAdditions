@@ -22,32 +22,17 @@
   "requires_arc": true,
   "subspecs": [
     {
-      "name": "Common",
-      "source_files": "Source/OHAttributedStringAdditions.h"
-    },
-    {
-      "name": "NSAttributedString",
-      "source_files": "Source/NS*AttributedString+OHAdditions.{h,m}",
-      "dependencies": {
-        "OHAttributedStringAdditions/Common": [
-
-        ]
-      }
-    },
-    {
-      "name": "UIFont",
-      "source_files": "Source/UIFont+OHAdditions.{h,m}",
-      "dependencies": {
-        "OHAttributedStringAdditions/Common": [
-
-        ]
-      }
+      "name": "Base",
+      "source_files": [
+        "Source/OHAttributedStringAdditions.h",
+        "Source/{NSAttributedString,NSMutableAttributedString,UIFont}+OHAdditions.{h,m}"
+      ]
     },
     {
       "name": "UILabel",
       "source_files": "Source/UILabel+OHAdditions.{h,m}",
       "dependencies": {
-        "OHAttributedStringAdditions/Common": [
+        "OHAttributedStringAdditions/Base": [
 
         ]
       }

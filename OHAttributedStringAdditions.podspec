@@ -39,21 +39,13 @@ Pod::Spec.new do |s|
 
   ### Subspecs ###
   
-  s.subspec 'Common' do |sub|
-    # The umbrella header
-    sub.source_files  = "Source/#{s.name}.h"
+  s.subspec 'Base' do |sub|
+    sub.source_files  = "Source/#{s.name}.h", "Source/{NSAttributedString,NSMutableAttributedString,UIFont}+OHAdditions.{h,m}"
   end
   
-  subspecs = {
-      'NSAttributedString' => 'NS*AttributedString',
-      'UIFont' => 'UIFont',
-      'UILabel' => 'UILabel'
-  }
-  
-  subspecs.each do |name, prefix|
-    s.subspec name do |sub|
-      sub.source_files  = "Source/#{prefix || name}+OHAdditions.{h,m}"
-      sub.dependency "#{s.name}/Common"
-    end
+  s.subspec 'UILabel' do |sub|
+    sub.source_files  = "Source/UILabel+OHAdditions.{h,m}"
+    sub.dependency "#{s.name}/Base"
   end
+  
 end
