@@ -13,6 +13,7 @@
 @interface ASDViewController () <UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITextView* textView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* bottomDistance;
+@property (weak, nonatomic) IBOutlet UILabel *footerLabel;
 @end
 
 @implementation ASDViewController
@@ -24,7 +25,17 @@
     
     self.textView.attributedText = [self originalString];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardAnimation:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    NSMutableAttributedString* mas = [self.footerLabel.attributedText mutableCopy];
+    NSRange range = NSMakeRange(10, 20);
+    [mas setURL:[NSURL URLWithString:@"https://github.com/AliSoftware/OHAttributedStringAdditions/wiki"] range:range];
+    [mas setTextColor:[UIColor blueColor] range:range];
+    [mas setTextUnderlined:YES range:range];
+    self.footerLabel.attributedText = [mas copy];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardAnimation:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
 }
 
 - (void)dealloc
@@ -96,8 +107,9 @@
     return originalString;
 }
 
-// MARK: Tap on a link
+// MARK: Tap on a links
 
+// Links in TextView are already supported by UITextViewDelegate
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
 {
     // Intercept taps on links to display an alert instead of opening it in Safari
@@ -106,6 +118,22 @@
                                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     return NO;
 }
+
+// Links on UILabel have to use UITapGestureRecognizer (here added via the XIB)
+- (IBAction)tapOnFooter:(UITapGestureRecognizer *)tapGR
+{
+    if (tapGR.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint tapPoint = [tapGR locationInView:self.footerLabel];
+        NSUInteger pos = [self.footerLabel characterIndexAtPoint:tapPoint];
+        if (pos != NSNotFound)
+        {
+            NSURL* urlTapped = [self.footerLabel.attributedText URLAtIndex:pos effectiveRange:NULL];
+            if (urlTapped) [[UIApplication sharedApplication] openURL:urlTapped];
+        }
+    }
+}
+
 
 // MARK: Text Search
 

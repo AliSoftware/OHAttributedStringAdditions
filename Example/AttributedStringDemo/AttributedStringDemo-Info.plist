@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>ASDViewController</string>
+	<key>UILaunchStoryboardName</key>
+	<string>ASDViewController</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

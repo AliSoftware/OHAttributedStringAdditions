@@ -24,6 +24,18 @@
  *
  ******************************************************************************/
 
+#if __has_include("NSAttributedString+OHAdditions.h")
 #import "NSAttributedString+OHAdditions.h"
+#endif
+
+#if __has_include("NSMutableAttributedString+OHAdditions.h")
 #import "NSMutableAttributedString+OHAdditions.h"
+#endif
+
+#if __has_include("UIFont+OHAdditions.h")
 #import "UIFont+OHAdditions.h"
+#endif
+
+#if __has_include("UILabel+OHAdditions.h")
+#import "UILabel+OHAdditions.h"
+#endif

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "OHAttributedStringAdditions"
-  s.version      = "1.2.0"
+  s.version      = "1.3.0"
   s.summary      = "Categories on NSAttributedString to add a lot of very useful convenience methods."
 
   s.description  = <<-DESC.gsub(/^.*\|/,'')
@@ -34,12 +34,26 @@ Pod::Spec.new do |s|
   # s.osx.deployment_target = "10.8"
 
   s.source       = { :git => "https://github.com/AliSoftware/OHAttributedStringAdditions.git", :tag => s.version.to_s }
-
-  s.source_files  = "Source/**/*.{h,m}"
-  s.public_header_files = "Source/**/*.h"
-
-  # s.frameworks = "SomeFramework", "AnotherFramework"
-
   s.requires_arc = true
 
+
+  ### Subspecs ###
+  
+  s.subspec 'Common' do |sub|
+    # The umbrella header
+    sub.source_files  = "Source/#{s.name}.h"
+  end
+  
+  subspecs = {
+      'NSAttributedString' => 'NS*AttributedString',
+      'UIFont' => 'UIFont',
+      'UILabel' => 'UILabel'
+  }
+  
+  subspecs.each do |name, prefix|
+    s.subspec name do |sub|
+      sub.source_files  = "Source/#{prefix || name}+OHAdditions.{h,m}"
+      sub.dependency "#{s.name}/Common"
+    end
+  end
 end

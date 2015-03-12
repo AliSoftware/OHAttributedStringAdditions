@@ -17,6 +17,17 @@ Convenience methods include:
 * baseline adjustment, **subscript**, **superscript**, …
 * And much more
 
+It also contains:
+
+* A category on `UIFont` to build a font given its postscript name and derive a bold/italic font from a standard one and vice-versa.
+* A category on `UILabel` to make it easier to detect the character at a given coordinate, which is useful to detect if the user tapped on a link (if the character as a given tapped `CGPoint` has an associated `NSURL`) and similar stuff
+
+> Note that for advanced URL detection, you should still prefer `UITextView` (configuring it with `editable=NO`) and its dedicated delegate methods instead of using `UILabel` (which does not publicly expose its `NSLayoutManager` to properly compute the exact way its characters are laid out, forcing us to recreate the TextKit objects ourselves, contrary to `UITextView`).
+
+## Documentation
+
+The source code is fully commented and documentation is auto-generated [here](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
+
 ## Installation
 
 The suggested installation is via [CocoaPods](http://cocoapods.org/). Simply add the following line to your `Podfile`:
@@ -24,15 +35,14 @@ The suggested installation is via [CocoaPods](http://cocoapods.org/). Simply add
 ```
 pod 'OHAttributedStringAdditions'
 ```
+
 Then do a `pod install`.
-
-## Documentation
-
-The source code is fully commented and documentation is auto-generated [here](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
 
 ## Example
 
 A demo project is provided in the repository. Don't hesitate to open `Example/AttributedStringDemo.xcworkspace` and play with it.
+
+If you have CocoaPods, you can even try that Sample project even if you don't have cloned the project yet, by using `pod try OHAttributedStringAdditions` in your terminal.
 
 ![Demo Capture](README.png)
 
@@ -45,4 +55,4 @@ A demo project is provided in the repository. Don't hesitate to open `Example/At
 
 ## Licence
 
-This component is under the MIT Licence
+This component is under the MIT Licence (See the `LICENSE` file).
