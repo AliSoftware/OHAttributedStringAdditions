@@ -26,7 +26,9 @@ It also contains:
 
 ## Documentation
 
-The source code is fully commented and documentation is auto-generated [here](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
+The source code is fully commented and documentation is auto-generated [here](http://cocoadocs.org/docsets/OHAttributedStringAdditions).
+
+There is also some help pages [in the repository's wiki](https://github.com/AliSoftware/OHAttributedStringAdditions/wiki).
 
 ## Installation
 
