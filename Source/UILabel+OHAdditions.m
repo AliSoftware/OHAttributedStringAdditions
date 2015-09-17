@@ -23,6 +23,7 @@
  ******************************************************************************/
 
 #import "UILabel+OHAdditions.h"
+#import "NSMutableAttributedString+OHAdditions.h"
 
 @implementation UILabel (OHAdditions)
 
@@ -35,10 +36,24 @@
     return textContainer;
 }
 
+- (NSTextStorage*)currentTextStorage
+{
+    NSAttributedString* attributedText = self.attributedText;
+    if (
+        self.lineBreakMode == NSLineBreakByTruncatingTail
+        || self.lineBreakMode == NSLineBreakByTruncatingMiddle
+        || self.lineBreakMode == NSLineBreakByTruncatingHead) {
+        NSMutableAttributedString* temp = [attributedText mutableCopy];
+        [temp setLineBreakMode:NSLineBreakByWordWrapping];
+        attributedText = temp;
+    }
+    return [[NSTextStorage alloc] initWithAttributedString:attributedText];
+}
+
 - (NSUInteger)characterIndexAtPoint:(CGPoint)point
 {
     NSTextContainer* textContainer = self.currentTextContainer;
-    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:self.attributedText];
+    NSTextStorage *textStorage = self.currentTextStorage;
 
     NSLayoutManager *layoutManager = [NSLayoutManager new];
     [textStorage addLayoutManager:layoutManager];

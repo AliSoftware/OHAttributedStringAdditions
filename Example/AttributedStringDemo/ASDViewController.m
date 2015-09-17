@@ -128,6 +128,7 @@
         NSUInteger pos = [self.footerLabel characterIndexAtPoint:tapPoint];
         if (pos != NSNotFound)
         {
+            NSLog(@"POS: %zi", pos);
             NSURL* urlTapped = [self.footerLabel.attributedText URLAtIndex:pos effectiveRange:NULL];
             if (urlTapped) [[UIApplication sharedApplication] openURL:urlTapped];
         }
