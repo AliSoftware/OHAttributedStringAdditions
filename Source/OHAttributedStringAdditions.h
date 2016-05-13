@@ -24,6 +24,14 @@
  *
  ******************************************************************************/
 
+#import <UIKit/UIKit.h>
+
+//! Project version number for OHAttributedStringAdditions.
+FOUNDATION_EXPORT double OHAttributedStringAdditionsVersionNumber;
+
+//! Project version string for OHAttributedStringAdditions.
+FOUNDATION_EXPORT const unsigned char OHAttributedStringAdditionsVersionString[];
+
 #import "NSAttributedString+OHAdditions.h"
 #import "NSMutableAttributedString+OHAdditions.h"
 #import "UIFont+OHAdditions.h"
