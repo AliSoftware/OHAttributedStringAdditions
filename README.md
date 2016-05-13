@@ -3,6 +3,7 @@
 [![Version](http://cocoapod-badges.herokuapp.com/v/OHAttributedStringAdditions/badge.png)](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/OHAttributedStringAdditions/badge.png)](http://cocoadocs.org/docsets/OHAttributedStringAdditions)
 [![Build Status](https://travis-ci.org/AliSoftware/OHAttributedStringAdditions.png?branch=master)](https://travis-ci.org/AliSoftware/OHAttributedStringAdditions)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 This pod contains categories on `NSAttributedString` to add a lot of very useful convenience methods to manipulate attributed strings.
 
